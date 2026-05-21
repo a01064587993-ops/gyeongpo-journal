@@ -6,201 +6,184 @@
 <title>경포고등학교 정기학술회 탐구 아카이브</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  :root{
-    --navy:#0a1628;
-    --navy2:#112240;
-    --navy3:#1d3a6b;
-    --gold:#c9a84c;
-    --gold2:#e8c96a;
-    --cream:#f8f5ef;
-    --cream2:#ede8dd;
-    --text:#1a1a2e;
-    --muted:#6b7080;
-    --border:#d4cfc4;
-    --card:#ffffff;
-    --red:#b8362a;
-    --teal:#1a6b6b;
-  }
-  body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
-
-  /* NAV */
-  nav{background:var(--navy);padding:0 40px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
-  .nav-logo{font-family:'Noto Serif KR',serif;color:var(--gold);font-size:15px;letter-spacing:0.05em;font-weight:600;cursor:pointer}
-  .nav-links{display:flex;gap:24px}
-  .nav-links button{background:none;border:none;color:rgba(255,255,255,0.75);font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;padding:4px 0;transition:color .2s}
-  .nav-links button:hover,.nav-links button.active{color:var(--gold)}
-  .nav-right{display:flex;gap:10px;align-items:center}
-  .btn-submit{background:var(--gold);color:var(--navy);border:none;padding:7px 16px;font-size:13px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border-radius:3px;transition:background .2s}
-  .btn-submit:hover{background:var(--gold2)}
-  .btn-login{background:none;border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.85);padding:6px 14px;font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border-radius:3px;transition:all .2s;display:flex;align-items:center;gap:6px}
-  .btn-login:hover{background:rgba(255,255,255,0.1)}
-  .user-info{display:flex;align-items:center;gap:8px}
-  .user-avatar{width:28px;height:28px;border-radius:50%;border:2px solid var(--gold)}
-  .user-name{font-size:12px;color:rgba(255,255,255,0.8);max-width:100px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-  .btn-logout{background:none;border:none;color:rgba(255,255,255,0.45);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;padding:2px 6px}
-  .btn-logout:hover{color:rgba(255,255,255,0.8)}
-  .login-required{text-align:center;padding:48px;background:#fff;border:1px solid var(--border);margin-bottom:10px}
-  .login-required p{font-size:14px;color:var(--muted);margin-bottom:16px}
-  .btn-google{display:inline-flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--border);padding:10px 20px;font-size:13px;font-weight:500;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border-radius:4px;transition:box-shadow .2s;color:var(--text)}
-  .btn-google:hover{box-shadow:0 2px 8px rgba(0,0,0,0.12)}
-  .loading-spinner{text-align:center;padding:48px;color:var(--muted);font-size:13px}
-
-  /* PAGE SYSTEM */
-  .page{display:none}
-  .page.active{display:block}
-
-  /* HERO */
-  .hero{background:var(--navy);padding:64px 40px 56px;position:relative;overflow:hidden}
-  .hero::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(201,168,76,0.06) 39px,rgba(201,168,76,0.06) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(201,168,76,0.06) 39px,rgba(201,168,76,0.06) 40px)}
-  .hero-inner{position:relative;z-index:1;max-width:760px;margin:0 auto;text-align:center}
-  .hero-badge{display:inline-block;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:11px;letter-spacing:0.12em;padding:4px 12px;margin-bottom:24px}
-  .hero h1{font-family:'Noto Serif KR',serif;color:#fff;font-size:32px;line-height:1.4;font-weight:700;margin-bottom:12px}
-  .hero-sub{color:rgba(255,255,255,0.55);font-size:14px;line-height:1.8;margin-bottom:32px}
-  .hero-stats{display:flex;justify-content:center;gap:48px}
-  .stat-item{text-align:center}
-  .stat-num{font-family:'Noto Serif KR',serif;font-size:28px;color:var(--gold);font-weight:700}
-  .stat-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px;letter-spacing:0.05em}
-
-  /* SECTION TABS */
-  .section-tabs{background:var(--cream2);border-bottom:1px solid var(--border);padding:0 40px;display:flex;gap:0}
-  .tab-btn{background:none;border:none;padding:14px 20px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px}
-  .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
-  .tab-badge{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:6px;font-weight:700}
-  .tab-badge.teal{background:var(--teal)}
-
-  /* MAIN LAYOUT */
-  .main-layout{display:grid;grid-template-columns:1fr 260px;gap:0;max-width:1100px;margin:0 auto;padding:32px 40px}
-
-  /* PAPER CARDS */
-  .papers-grid{display:flex;flex-direction:column;gap:0}
-  .section-header{display:flex;align-items:center;gap:12px;margin-bottom:20px;padding-bottom:12px;border-bottom:2px solid var(--navy)}
-  .section-tag{background:var(--navy);color:var(--gold);font-size:11px;font-weight:700;letter-spacing:0.08em;padding:3px 10px}
-  .section-title{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:600;color:var(--navy)}
-  .section-desc{font-size:11px;color:var(--muted);margin-left:auto}
-
-  .paper-card{background:var(--card);border:1px solid var(--border);padding:20px 22px;margin-bottom:10px;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative}
-  .paper-card:hover{border-color:var(--navy3);box-shadow:2px 2px 0 var(--cream2)}
-  .paper-card.featured{border-left:3px solid var(--gold)}
-  .paper-card.featured::after{content:'우수논문';position:absolute;top:12px;right:12px;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:2px 8px}
-  .paper-meta{display:flex;gap:8px;align-items:center;margin-bottom:8px}
-  .field-tag{font-size:10px;font-weight:700;letter-spacing:0.06em;padding:2px 7px;border-radius:2px}
-  .ft-physics{background:#e8f0f8;color:#1a4a7a}
-  .ft-chem{background:#fff0e8;color:#7a3a1a}
-  .ft-bio{background:#e8f5e8;color:#1a5a1a}
-  .ft-math{background:#f0e8f5;color:#4a1a7a}
-  .ft-cs{background:#e8f5f5;color:#1a5a5a}
-  .ft-earth{background:#f5f5e8;color:#5a5a1a}
-  .paper-year{font-size:11px;color:var(--muted)}
-  .paper-title{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:6px}
-  .paper-authors{font-size:12px;color:var(--muted);margin-bottom:8px}
-  .paper-abstract{font-size:12px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-  .paper-footer{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding-top:10px;border-top:1px solid var(--cream2)}
-  .paper-views{font-size:11px;color:var(--muted)}
-  .paper-views span{font-weight:500;color:var(--text)}
-  .btn-read{background:none;border:1px solid var(--navy);color:var(--navy);font-size:11px;padding:4px 12px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:500;transition:all .2s}
-  .btn-read:hover{background:var(--navy);color:#fff}
-
-  /* SIDEBAR */
-  .sidebar{padding-left:28px;border-left:1px solid var(--border)}
-  .sidebar-block{margin-bottom:28px}
-  .sidebar-title{font-size:11px;font-weight:700;letter-spacing:0.1em;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:14px}
-  .category-item{display:flex;justify-content:space-between;align-items:center;padding:7px 0;border-bottom:1px solid var(--cream2);cursor:pointer}
-  .category-item:hover .cat-name{color:var(--navy3)}
-  .cat-name{font-size:13px;color:var(--text);transition:color .2s}
-  .cat-count{font-size:11px;color:var(--muted);background:var(--cream2);padding:1px 7px;border-radius:10px}
-  .recent-item{padding:8px 0;border-bottom:1px solid var(--cream2);cursor:pointer}
-  .recent-item:last-child{border:none}
-  .recent-title{font-size:12px;color:var(--text);line-height:1.5;margin-bottom:3px}
-  .recent-title:hover{color:var(--navy3)}
-  .recent-meta{font-size:11px;color:var(--muted)}
-  .notice-item{display:flex;gap:8px;padding:7px 0;border-bottom:1px solid var(--cream2);font-size:12px;cursor:pointer}
-  .notice-item:last-child{border:none}
-  .notice-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;margin-top:5px}
-  .notice-text{color:var(--text);line-height:1.5}
-  .notice-date{color:var(--muted);font-size:10px;margin-top:2px}
-
-  /* SUBMIT PAGE */
-  .submit-page{max-width:680px;margin:0 auto;padding:40px}
-  .submit-header{margin-bottom:32px;text-align:center}
-  .submit-header h2{font-family:'Noto Serif KR',serif;font-size:24px;color:var(--navy);margin-bottom:8px}
-  .submit-header p{font-size:13px;color:var(--muted);line-height:1.7}
-  .track-selector{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:28px}
-  .track-card{border:2px solid var(--border);padding:18px;cursor:pointer;transition:all .2s;background:#fff}
-  .track-card:hover{border-color:var(--navy3)}
-  .track-card.selected{border-color:var(--navy);background:var(--navy)}
-  .track-card.selected .track-name,.track-card.selected .track-desc{color:#fff}
-  .track-icon{font-size:22px;margin-bottom:8px}
-  .track-name{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px}
-  .track-desc{font-size:11px;color:var(--muted);line-height:1.5}
-  .form-group{margin-bottom:18px}
-  .form-label{font-size:12px;font-weight:700;color:var(--navy);display:block;margin-bottom:6px;letter-spacing:0.05em}
-  .form-label span{color:var(--red);margin-left:2px}
-  .form-input,.form-textarea,.form-select{width:100%;border:1px solid var(--border);padding:10px 12px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:#fff;outline:none;transition:border-color .2s}
-  .form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--navy)}
-  .form-textarea{height:90px;resize:vertical}
-  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .file-drop{border:1px dashed var(--border);padding:24px;text-align:center;background:var(--cream);cursor:pointer;transition:border-color .2s}
-  .file-drop:hover{border-color:var(--navy)}
-  .file-drop-text{font-size:12px;color:var(--muted);line-height:1.8}
-  .file-drop-text strong{color:var(--navy);font-size:13px;display:block;margin-bottom:4px}
-  .btn-full{width:100%;background:var(--navy);color:#fff;border:none;padding:13px;font-size:14px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;margin-top:8px;letter-spacing:0.05em;transition:background .2s}
-  .btn-full:hover{background:var(--navy3)}
-
-  /* ABOUT PAGE */
-  .about-page{max-width:760px;margin:0 auto;padding:40px}
-  .about-hero{background:var(--navy);padding:40px;margin-bottom:28px;position:relative}
-  .about-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(201,168,76,0.04) 20px,rgba(201,168,76,0.04) 21px)}
-  .about-hero-inner{position:relative;z-index:1}
-  .about-hero h2{font-family:'Noto Serif KR',serif;color:#fff;font-size:22px;margin-bottom:10px}
-  .about-hero p{color:rgba(255,255,255,0.65);font-size:13px;line-height:1.9}
-  .about-section{margin-bottom:28px}
-  .about-section h3{font-family:'Noto Serif KR',serif;font-size:16px;color:var(--navy);border-left:3px solid var(--gold);padding-left:12px;margin-bottom:14px}
-  .about-section p{font-size:13px;color:var(--text);line-height:1.9;margin-bottom:10px}
-  .track-info{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px}
-  .track-info-card{border:1px solid var(--border);padding:16px;background:#fff}
-  .track-info-card h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:6px}
-  .track-info-card p{font-size:12px;color:var(--muted);line-height:1.7}
-  .timeline{display:flex;flex-direction:column;gap:0}
-  .tl-item{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--cream2)}
-  .tl-item:last-child{border:none}
-  .tl-date{font-size:11px;font-weight:700;color:var(--gold);background:var(--navy);padding:3px 8px;white-space:nowrap;align-self:flex-start;margin-top:2px}
-  .tl-content{font-size:13px;color:var(--text);line-height:1.6}
-  .tl-content strong{display:block;font-weight:700;margin-bottom:2px}
-
-  /* ALL PAPERS PAGE */
-  .papers-page{max-width:900px;margin:0 auto;padding:32px 40px}
-  .search-bar{display:flex;gap:10px;margin-bottom:20px}
-  .search-bar .form-input{flex:1}
-  .search-bar .form-select{width:130px}
-
-  /* MODAL */
-  .modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,22,40,0.75);z-index:200;align-items:center;justify-content:center}
-  .modal-overlay.open{display:flex}
-  .modal{background:#fff;width:600px;max-height:85vh;overflow-y:auto;border-top:3px solid var(--gold)}
-  .modal-header{background:var(--navy);padding:20px 24px;position:relative}
-  .modal-header h3{font-family:'Noto Serif KR',serif;color:#fff;font-size:16px;line-height:1.4}
-  .modal-header p{color:rgba(255,255,255,0.55);font-size:12px;margin-top:6px}
-  .modal-close{position:absolute;top:16px;right:16px;background:none;border:none;color:rgba(255,255,255,0.6);font-size:20px;cursor:pointer;line-height:1}
-  .modal-body{padding:24px}
-  .modal-body h4{font-size:13px;font-weight:700;letter-spacing:0.05em;color:var(--muted);margin:16px 0 8px;text-transform:uppercase}
-  .modal-body p{font-size:13px;color:var(--text);line-height:1.9}
-  .modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
-
-  /* TOAST */
-  .toast{position:fixed;bottom:24px;right:24px;background:var(--teal);color:#fff;padding:12px 20px;font-size:13px;font-weight:500;z-index:300;display:none;border-radius:3px}
-
-  @media(max-width:768px){
-    .main-layout{grid-template-columns:1fr}
-    .sidebar{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:24px;margin-top:8px}
-    .hero-stats{gap:24px}
-    .hero h1{font-size:22px}
-    nav{padding:0 16px}
-    .nav-links{gap:12px}
-    .main-layout{padding:20px 16px}
-    .track-selector,.form-row,.track-info{grid-template-columns:1fr}
-    .modal{width:95vw}
-  }
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0a1628;--navy2:#112240;--navy3:#1d3a6b;
+  --gold:#c9a84c;--gold2:#e8c96a;
+  --cream:#f8f5ef;--cream2:#ede8dd;
+  --text:#1a1a2e;--muted:#6b7080;--border:#d4cfc4;--card:#ffffff;
+  --red:#b8362a;--teal:#1a6b6b;
+}
+body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
+nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
+.nav-logo{font-family:'Noto Serif KR',serif;color:var(--gold);font-size:15px;font-weight:600;cursor:pointer}
+.nav-links{display:flex;gap:20px}
+.nav-links button{background:none;border:none;color:rgba(255,255,255,0.75);font-size:13px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;transition:color .2s}
+.nav-links button:hover,.nav-links button.active{color:var(--gold)}
+.nav-right{display:flex;gap:8px;align-items:center}
+.btn-submit{background:var(--gold);color:var(--navy);border:none;padding:7px 14px;font-size:12px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border-radius:3px}
+.btn-login{background:none;border:1px solid rgba(255,255,255,0.35);color:rgba(255,255,255,0.85);padding:6px 12px;font-size:12px;font-family:'Noto Sans KR',sans-serif;cursor:pointer;border-radius:3px;display:flex;align-items:center;gap:6px}
+.user-info{display:flex;align-items:center;gap:8px}
+.user-avatar{width:28px;height:28px;border-radius:50%;border:2px solid var(--gold)}
+.user-name{font-size:12px;color:rgba(255,255,255,0.8);max-width:90px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.admin-badge{font-size:10px;background:var(--gold);color:var(--navy);padding:1px 6px;border-radius:8px;font-weight:700}
+.btn-logout{background:none;border:none;color:rgba(255,255,255,0.4);font-size:11px;cursor:pointer;font-family:'Noto Sans KR',sans-serif}
+.page{display:none}.page.active{display:block}
+.hero{background:var(--navy);padding:56px 40px 48px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 39px,rgba(201,168,76,0.06) 39px,rgba(201,168,76,0.06) 40px),repeating-linear-gradient(90deg,transparent,transparent 39px,rgba(201,168,76,0.06) 39px,rgba(201,168,76,0.06) 40px)}
+.hero-inner{position:relative;z-index:1;max-width:720px;margin:0 auto;text-align:center}
+.hero-badge{display:inline-block;border:1px solid rgba(201,168,76,0.4);color:var(--gold);font-size:11px;letter-spacing:.12em;padding:4px 12px;margin-bottom:20px}
+.hero h1{font-family:'Noto Serif KR',serif;color:#fff;font-size:30px;line-height:1.4;font-weight:700;margin-bottom:10px}
+.hero-sub{color:rgba(255,255,255,0.55);font-size:13px;line-height:1.8;margin-bottom:28px}
+.hero-stats{display:flex;justify-content:center;gap:48px}
+.stat-item{text-align:center}
+.stat-num{font-family:'Noto Serif KR',serif;font-size:26px;color:var(--gold);font-weight:700}
+.stat-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px}
+.section-tabs{background:var(--cream2);border-bottom:1px solid var(--border);padding:0 40px;display:flex}
+.tab-btn{background:none;border:none;padding:13px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px}
+.tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
+.tab-badge{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px;font-weight:700}
+.tab-badge.teal{background:var(--teal)}
+.main-layout{display:grid;grid-template-columns:1fr 250px;max-width:1080px;margin:0 auto;padding:28px 40px;gap:0}
+.papers-grid{display:flex;flex-direction:column}
+.section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
+.section-tag{background:var(--navy);color:var(--gold);font-size:11px;font-weight:700;padding:3px 10px}
+.section-title{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)}
+.section-desc{font-size:11px;color:var(--muted);margin-left:auto}
+.paper-card{background:var(--card);border:1px solid var(--border);padding:18px 20px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative}
+.paper-card:hover{border-color:var(--navy3);box-shadow:2px 2px 0 var(--cream2)}
+.paper-card.featured{border-left:3px solid var(--gold)}
+.paper-card.featured::after{content:'우수논문';position:absolute;top:10px;right:10px;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:2px 7px}
+.paper-meta{display:flex;gap:8px;align-items:center;margin-bottom:7px}
+.field-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px}
+.ft-physics{background:#e8f0f8;color:#1a4a7a}.ft-chem{background:#fff0e8;color:#7a3a1a}
+.ft-bio{background:#e8f5e8;color:#1a5a1a}.ft-math{background:#f0e8f5;color:#4a1a7a}
+.ft-cs{background:#e8f5f5;color:#1a5a5a}.ft-earth{background:#f5f5e8;color:#5a5a1a}
+.paper-year{font-size:11px;color:var(--muted)}
+.paper-title{font-family:'Noto Serif KR',serif;font-size:14px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:5px}
+.paper-authors{font-size:12px;color:var(--muted);margin-bottom:7px}
+.paper-abstract{font-size:12px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.paper-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--cream2)}
+.paper-actions{display:flex;align-items:center;gap:8px}
+.btn-heart{background:none;border:none;cursor:pointer;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:3px;font-family:'Noto Sans KR',sans-serif;padding:2px 6px;border-radius:3px;transition:all .2s}
+.btn-heart:hover{background:#fff0f0;color:var(--red)}
+.btn-heart.liked{color:var(--red);font-weight:700}
+.btn-read{background:none;border:1px solid var(--navy);color:var(--navy);font-size:11px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:500;transition:all .2s}
+.btn-read:hover{background:var(--navy);color:#fff}
+.admin-actions{display:flex;gap:6px}
+.btn-admin{font-size:10px;padding:3px 8px;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:700;border-radius:2px}
+.btn-delete{background:#fee;color:var(--red)}
+.btn-feature{background:#fffbe8;color:#7a5a00}
+.sidebar{padding-left:24px;border-left:1px solid var(--border)}
+.sidebar-block{margin-bottom:24px}
+.sidebar-title{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:7px;margin-bottom:12px}
+.category-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--cream2);cursor:pointer}
+.cat-name{font-size:13px;color:var(--text);transition:color .2s}
+.category-item:hover .cat-name{color:var(--navy3)}
+.cat-count{font-size:11px;color:var(--muted);background:var(--cream2);padding:1px 6px;border-radius:10px}
+.recent-item{padding:7px 0;border-bottom:1px solid var(--cream2);cursor:pointer}
+.recent-item:last-child{border:none}
+.recent-title{font-size:12px;color:var(--text);line-height:1.5;margin-bottom:2px}
+.recent-meta{font-size:11px;color:var(--muted)}
+.papers-page{max-width:880px;margin:0 auto;padding:28px 40px}
+.search-bar{display:flex;gap:8px;margin-bottom:16px}
+.search-bar .form-input{flex:1}
+.search-bar .form-select{width:120px}
+.submit-page{max-width:660px;margin:0 auto;padding:36px 40px}
+.submit-header{margin-bottom:28px;text-align:center}
+.submit-header h2{font-family:'Noto Serif KR',serif;font-size:22px;color:var(--navy);margin-bottom:6px}
+.submit-header p{font-size:13px;color:var(--muted);line-height:1.7}
+.track-selector{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:24px}
+.track-card{border:2px solid var(--border);padding:16px;cursor:pointer;transition:all .2s;background:#fff}
+.track-card.selected{border-color:var(--navy);background:var(--navy)}
+.track-card.selected .track-name,.track-card.selected .track-desc{color:#fff}
+.track-icon{font-size:20px;margin-bottom:6px}
+.track-name{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:3px}
+.track-desc{font-size:11px;color:var(--muted);line-height:1.5}
+.form-group{margin-bottom:16px}
+.form-label{font-size:12px;font-weight:700;color:var(--navy);display:block;margin-bottom:5px}
+.form-label span{color:var(--red);margin-left:2px}
+.form-input,.form-textarea,.form-select{width:100%;border:1px solid var(--border);padding:9px 11px;font-size:13px;font-family:'Noto Sans KR',sans-serif;color:var(--text);background:#fff;outline:none;transition:border-color .2s}
+.form-input:focus,.form-textarea:focus,.form-select:focus{border-color:var(--navy)}
+.form-textarea{height:90px;resize:vertical}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.file-drop{border:1px dashed var(--border);padding:20px;text-align:center;background:var(--cream);cursor:pointer}
+.file-drop-text strong{color:var(--navy);font-size:13px;display:block;margin-bottom:4px}
+.file-drop-text{font-size:12px;color:var(--muted);line-height:1.8}
+.btn-full{width:100%;background:var(--navy);color:#fff;border:none;padding:12px;font-size:14px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;margin-top:6px}
+.btn-full:disabled{opacity:.6;cursor:not-allowed}
+.about-page{max-width:740px;margin:0 auto;padding:36px 40px}
+.about-hero{background:var(--navy);padding:36px;margin-bottom:24px;position:relative}
+.about-hero::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,transparent,transparent 20px,rgba(201,168,76,0.04) 20px,rgba(201,168,76,0.04) 21px)}
+.about-hero-inner{position:relative;z-index:1}
+.about-hero h2{font-family:'Noto Serif KR',serif;color:#fff;font-size:20px;margin-bottom:8px}
+.about-hero p{color:rgba(255,255,255,0.65);font-size:13px;line-height:1.9}
+.about-section{margin-bottom:24px}
+.about-section h3{font-family:'Noto Serif KR',serif;font-size:15px;color:var(--navy);border-left:3px solid var(--gold);padding-left:10px;margin-bottom:12px}
+.about-section p{font-size:13px;color:var(--text);line-height:1.9;margin-bottom:8px}
+.track-info{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.track-info-card{border:1px solid var(--border);padding:14px;background:#fff}
+.track-info-card h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:5px}
+.track-info-card p{font-size:12px;color:var(--muted);line-height:1.7}
+.timeline{display:flex;flex-direction:column}
+.tl-item{display:flex;gap:14px;padding:10px 0;border-bottom:1px solid var(--cream2)}
+.tl-item:last-child{border:none}
+.tl-date{font-size:11px;font-weight:700;color:var(--gold);background:var(--navy);padding:3px 7px;white-space:nowrap;align-self:flex-start;margin-top:1px}
+.tl-content{font-size:13px;color:var(--text);line-height:1.6}
+.tl-content strong{display:block;font-weight:700;margin-bottom:1px}
+/* MYPAGE */
+.mypage{max-width:760px;margin:0 auto;padding:36px 40px}
+.mypage-header{background:var(--navy);padding:28px 32px;margin-bottom:24px;display:flex;align-items:center;gap:20px}
+.mypage-avatar{width:56px;height:56px;border-radius:50%;border:3px solid var(--gold)}
+.mypage-info h2{font-family:'Noto Serif KR',serif;color:#fff;font-size:18px;margin-bottom:4px}
+.mypage-info p{color:rgba(255,255,255,0.55);font-size:12px}
+.mypage-stats{display:flex;gap:24px;margin-top:10px}
+.mypage-stat{text-align:center}
+.mypage-stat-num{font-size:18px;font-weight:700;color:var(--gold)}
+.mypage-stat-label{font-size:11px;color:rgba(255,255,255,0.5)}
+/* MODAL */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,22,40,0.8);z-index:200;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px}
+.modal-overlay.open{display:flex}
+.modal{background:#fff;width:640px;border-top:3px solid var(--gold);margin:auto}
+.modal-header{background:var(--navy);padding:18px 22px;position:relative}
+.modal-header h3{font-family:'Noto Serif KR',serif;color:#fff;font-size:15px;line-height:1.4}
+.modal-header p{color:rgba(255,255,255,0.55);font-size:12px;margin-top:5px}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;color:rgba(255,255,255,0.6);font-size:20px;cursor:pointer}
+.modal-body{padding:20px 22px}
+.modal-body h4{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--muted);margin:14px 0 6px;text-transform:uppercase}
+.modal-body p{font-size:13px;color:var(--text);line-height:1.9}
+.modal-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px}
+.modal-actions{display:flex;align-items:center;gap:12px;padding:14px 22px;border-top:1px solid var(--cream2);background:var(--cream)}
+.btn-heart-big{background:none;border:1px solid var(--border);cursor:pointer;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:5px;font-family:'Noto Sans KR',sans-serif;padding:6px 14px;border-radius:3px;transition:all .2s}
+.btn-heart-big:hover{border-color:var(--red);color:var(--red)}
+.btn-heart-big.liked{border-color:var(--red);color:var(--red);background:#fff5f5}
+/* COMMENTS */
+.comments-section{padding:0 22px 20px}
+.comments-title{font-size:12px;font-weight:700;color:var(--muted);letter-spacing:.08em;margin-bottom:12px;padding-top:4px}
+.comment-item{padding:10px 0;border-bottom:1px solid var(--cream2)}
+.comment-item:last-child{border:none}
+.comment-author{font-size:12px;font-weight:700;color:var(--navy);margin-bottom:3px;display:flex;align-items:center;gap:6px}
+.comment-text{font-size:13px;color:var(--text);line-height:1.7}
+.comment-date{font-size:10px;color:var(--muted);margin-top:2px}
+.comment-form{display:flex;gap:8px;margin-top:12px}
+.comment-form .form-input{flex:1;padding:8px 10px;font-size:12px}
+.btn-comment{background:var(--navy);color:#fff;border:none;padding:8px 14px;font-size:12px;font-weight:700;font-family:'Noto Sans KR',sans-serif;cursor:pointer;white-space:nowrap}
+.btn-comment-delete{background:none;border:none;color:var(--muted);font-size:10px;cursor:pointer;margin-left:auto}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--teal);color:#fff;padding:11px 18px;font-size:13px;font-weight:500;z-index:300;display:none;border-radius:3px}
+.empty-msg{text-align:center;padding:40px 0;color:var(--muted)}
+.empty-msg .empty-icon{font-size:30px;margin-bottom:10px}
+.empty-msg .empty-title{font-size:14px;font-weight:500;color:var(--navy);margin-bottom:4px}
+.empty-msg .empty-sub{font-size:12px}
+.loading-spinner{text-align:center;padding:40px;color:var(--muted);font-size:13px}
+@media(max-width:768px){
+  .main-layout{grid-template-columns:1fr}
+  .sidebar{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:20px;margin-top:8px}
+  .hero-stats{gap:20px}.hero h1{font-size:22px}
+  nav{padding:0 14px}.nav-links{gap:10px}
+  .main-layout,.papers-page,.submit-page,.about-page,.mypage{padding:20px 16px}
+  .track-selector,.form-row,.track-info{grid-template-columns:1fr}
+  .modal{width:95vw}.mypage-header{flex-direction:column;text-align:center}
+}
 </style>
 </head>
 <body>
@@ -211,20 +194,16 @@
     <button class="active" onclick="showPage('home',this)">홈</button>
     <button onclick="showPage('papers',this)">논문 목록</button>
     <button onclick="showPage('submit',this)">논문 투고</button>
-    <button onclick="showPage('about',this)">학술회 소개</button>
+    <button onclick="showPage('about',this)">소개</button>
+    <button id="nav-mypage-btn" style="display:none" onclick="showPage('mypage',this)">마이페이지</button>
   </div>
   <div class="nav-right">
-    <div id="nav-auth">
-      <button class="btn-login" onclick="loginWithGoogle()">
-        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#ccc" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#aaa" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        구글 로그인
-      </button>
-    </div>
+    <div id="nav-auth"></div>
     <button class="btn-submit" onclick="showPage('submit',null)">📄 투고하기</button>
   </div>
 </nav>
 
-<!-- ========== HOME PAGE ========== -->
+<!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-inner">
@@ -238,12 +217,10 @@
       </div>
     </div>
   </div>
-
   <div class="section-tabs">
     <button class="tab-btn active" onclick="showTab('free',this)">자유투고 <span class="tab-badge" id="badge-free">0</span></button>
     <button class="tab-btn" onclick="showTab('best',this)">우수투고 <span class="tab-badge teal" id="badge-best">0</span></button>
   </div>
-
   <div class="main-layout">
     <div>
       <div id="tab-free">
@@ -252,7 +229,7 @@
           <div class="section-title">탐구 보고서 · 소논문</div>
           <div class="section-desc">누구나 투고 가능</div>
         </div>
-        <div class="papers-grid" id="free-papers"></div>
+        <div id="free-papers"></div>
       </div>
       <div id="tab-best" style="display:none">
         <div class="section-header">
@@ -260,10 +237,9 @@
           <div class="section-title">심사 통과 우수 논문</div>
           <div class="section-desc">편집위원회 심사 후 게재</div>
         </div>
-        <div class="papers-grid" id="best-papers"></div>
+        <div id="best-papers"></div>
       </div>
     </div>
-
     <div class="sidebar">
       <div class="sidebar-block">
         <div class="sidebar-title">분야별 탐색</div>
@@ -274,7 +250,6 @@
         <div class="category-item" onclick="goFieldFilter('정보')"><span class="cat-name">💻 정보과학</span><span class="cat-count" id="cnt-cs">0</span></div>
         <div class="category-item" onclick="goFieldFilter('지구')"><span class="cat-name">🌍 지구과학</span><span class="cat-count" id="cnt-earth">0</span></div>
       </div>
-
       <div class="sidebar-block">
         <div class="sidebar-title">최근 게재</div>
         <div id="recent-list"></div>
@@ -283,190 +258,172 @@
   </div>
 </div>
 
-<!-- ========== PAPERS LIST PAGE ========== -->
+<!-- PAPERS LIST -->
 <div id="page-papers" class="page">
   <div class="papers-page">
-    <div style="margin-bottom:24px">
-      <h2 style="font-family:'Noto Serif KR',serif;font-size:20px;color:var(--navy);margin-bottom:6px">전체 논문 목록</h2>
+    <div style="margin-bottom:20px">
+      <h2 style="font-family:'Noto Serif KR',serif;font-size:19px;color:var(--navy);margin-bottom:5px">전체 논문 목록</h2>
       <p style="font-size:13px;color:var(--muted)" id="papers-count-label">전체 논문을 열람할 수 있습니다.</p>
     </div>
     <div class="search-bar">
       <input class="form-input" placeholder="제목, 저자, 키워드 검색..." id="search-input" oninput="filterPapers()">
       <select class="form-select" id="field-filter" onchange="filterPapers()">
         <option value="">전체 분야</option>
-        <option value="물리">물리·천문</option>
-        <option value="화학">화학</option>
-        <option value="생명">생명과학</option>
-        <option value="수학">수학</option>
-        <option value="정보">정보과학</option>
-        <option value="지구">지구과학</option>
+        <option value="물리">물리·천문</option><option value="화학">화학</option>
+        <option value="생명">생명과학</option><option value="수학">수학</option>
+        <option value="정보">정보과학</option><option value="지구">지구과학</option>
       </select>
       <select class="form-select" id="track-filter" onchange="filterPapers()">
         <option value="">전체 트랙</option>
-        <option value="free">자유투고</option>
-        <option value="best">우수투고</option>
+        <option value="free">자유투고</option><option value="best">우수투고</option>
       </select>
     </div>
     <div id="all-papers"></div>
   </div>
 </div>
 
-<!-- ========== SUBMIT PAGE ========== -->
+<!-- SUBMIT -->
 <div id="page-submit" class="page">
   <div class="submit-page">
     <div class="submit-header">
       <h2>논문 투고</h2>
-      <p>아래 양식을 작성하여 탐구 자료를 제출하세요.<br>제출 후 편집위원회 검토 이후 게재 여부가 결정됩니다.</p>
+      <p>아래 양식을 작성하여 탐구 자료를 제출하세요.<br>제출 후 편집위원회 검토 후 게재됩니다.</p>
     </div>
-
-    <div style="margin-bottom:20px">
-      <div class="form-label">투고 트랙 선택 <span style="color:var(--red)">*</span></div>
-      <div class="track-selector">
-        <div class="track-card selected" id="track-free" onclick="selectTrack('free')">
-          <div class="track-icon">📝</div>
-          <div class="track-name">자유투고란</div>
-          <div class="track-desc">형식 제한 없이 탐구 보고서, 소논문 등을 자유롭게 투고</div>
+    <div id="submit-login-msg" style="display:none;text-align:center;padding:36px;background:#fff;border:1px solid var(--border)">
+      <p style="font-size:14px;color:var(--muted);margin-bottom:16px">논문을 투고하려면 구글 로그인이 필요합니다.</p>
+      <button class="btn-google" onclick="loginWithGoogle()">
+        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+        구글 로그인
+      </button>
+    </div>
+    <div id="submit-form">
+      <div style="margin-bottom:18px">
+        <div class="form-label">투고 트랙 선택 <span style="color:var(--red)">*</span></div>
+        <div class="track-selector">
+          <div class="track-card selected" id="track-free" onclick="selectTrack('free')">
+            <div class="track-icon">📝</div>
+            <div class="track-name">자유투고란</div>
+            <div class="track-desc">형식 제한 없이 자유롭게 투고</div>
+          </div>
+          <div class="track-card" id="track-best" onclick="selectTrack('best')">
+            <div class="track-icon">🏆</div>
+            <div class="track-name">우수투고란</div>
+            <div class="track-desc">편집위원회 심사 후 선별 게재</div>
+          </div>
         </div>
-        <div class="track-card" id="track-best" onclick="selectTrack('best')">
-          <div class="track-icon">🏆</div>
-          <div class="track-name">우수투고란</div>
-          <div class="track-desc">연구 완성도가 높은 논문. 편집위원회 심사 후 선별 게재</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label class="form-label">논문 제목 <span>*</span></label>
-      <input class="form-input" placeholder="탐구 주제를 명확히 담은 제목을 입력하세요" id="f-title">
-    </div>
-    <div class="form-row">
-      <div class="form-group">
-        <label class="form-label">저자(이름) <span>*</span></label>
-        <input class="form-input" placeholder="예: 김민준, 이서연" id="f-authors">
       </div>
       <div class="form-group">
-        <label class="form-label">학년·반 <span>*</span></label>
-        <input class="form-input" placeholder="예: 1학년 3반" id="f-class">
+        <label class="form-label">논문 제목 <span>*</span></label>
+        <input class="form-input" placeholder="탐구 주제를 담은 제목" id="f-title">
       </div>
-    </div>
-    <div class="form-group">
-      <label class="form-label">연구 분야 <span>*</span></label>
-      <select class="form-select" id="f-field">
-        <option value="">선택하세요</option>
-        <option>물리·천문</option>
-        <option>화학</option>
-        <option>생명과학</option>
-        <option>수학</option>
-        <option>정보과학</option>
-        <option>지구과학</option>
-        <option>융합·기타</option>
-      </select>
-    </div>
-    <div class="form-group">
-      <label class="form-label">초록 (Abstract) <span>*</span></label>
-      <textarea class="form-textarea" placeholder="연구 목적, 방법, 결과를 200자 이상으로 요약해주세요" id="f-abstract" style="height:110px"></textarea>
-    </div>
-    <div class="form-group">
-      <label class="form-label">키워드</label>
-      <input class="form-input" placeholder="쉼표로 구분 (예: 열역학, 엔트로피, 비가역과정)" id="f-keywords">
-    </div>
-    <div class="form-group">
-      <label class="form-label">파일 첨부 <span>*</span></label>
-      <div class="file-drop" onclick="document.getElementById('file-input').click()">
-        <div class="file-drop-text">
-          <strong>📎 파일을 선택하거나 여기에 끌어다 놓으세요</strong>
-          PDF, HWP, DOCX 형식 · 최대 20MB
+      <div class="form-row">
+        <div class="form-group">
+          <label class="form-label">저자(이름) <span>*</span></label>
+          <input class="form-input" placeholder="예: 김민준, 이서연" id="f-authors">
+        </div>
+        <div class="form-group">
+          <label class="form-label">학년·반 <span>*</span></label>
+          <input class="form-input" placeholder="예: 1학년 3반" id="f-class">
         </div>
       </div>
-      <input type="file" id="file-input" style="display:none" accept=".pdf,.hwp,.docx" onchange="updateFileName(this)">
-      <div id="file-name" style="font-size:12px;color:var(--teal);margin-top:6px"></div>
+      <div class="form-group">
+        <label class="form-label">연구 분야 <span>*</span></label>
+        <select class="form-select" id="f-field">
+          <option value="">선택하세요</option>
+          <option>물리·천문</option><option>화학</option><option>생명과학</option>
+          <option>수학</option><option>정보과학</option><option>지구과학</option><option>융합·기타</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">초록 (Abstract) <span>*</span></label>
+        <textarea class="form-textarea" placeholder="연구 목적, 방법, 결과를 100자 이상 요약" id="f-abstract" style="height:100px"></textarea>
+      </div>
+      <div class="form-group">
+        <label class="form-label">키워드</label>
+        <input class="form-input" placeholder="쉼표로 구분 (예: 열역학, 엔트로피)" id="f-keywords">
+      </div>
+      <div class="form-group">
+        <label class="form-label">파일 첨부</label>
+        <div class="file-drop" onclick="document.getElementById('file-input').click()">
+          <div class="file-drop-text">
+            <strong>📎 파일 선택</strong>
+            PDF, HWP, DOCX · 최대 20MB
+          </div>
+        </div>
+        <input type="file" id="file-input" style="display:none" accept=".pdf,.hwp,.docx" onchange="updateFileName(this)">
+        <div id="file-name" style="font-size:12px;color:var(--teal);margin-top:5px"></div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">지도 교사 (선택)</label>
+        <input class="form-input" placeholder="지도해주신 선생님 성함" id="f-teacher">
+      </div>
+      <button class="btn-full" onclick="submitPaper()">논문 제출하기 →</button>
+      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">제출된 자료는 편집위원회 검토를 거쳐 등록됩니다.</p>
     </div>
-    <div class="form-group">
-      <label class="form-label">지도 교사 (선택)</label>
-      <input class="form-input" placeholder="지도해주신 선생님 성함" id="f-teacher">
-    </div>
-    <button class="btn-full" onclick="submitPaper()">논문 제출하기 →</button>
-    <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:12px">제출된 자료는 편집위원회의 검토를 거쳐 등록됩니다. 우수투고란은 심사 결과를 개별 통보합니다.</p>
   </div>
 </div>
 
-<!-- ========== ABOUT PAGE ========== -->
+<!-- ABOUT -->
 <div id="page-about" class="page">
   <div class="about-page">
     <div class="about-hero">
       <div class="about-hero-inner">
         <h2>경포고 정기학술회란?</h2>
         <p>경포고등학교 학생들의 자발적 탐구 문화를 장려하기 위해 만들어진 학술 기관입니다.<br>
-        매 학기 탐구 결과물을 수집하고, 심사를 거쳐 학술지 형태로 발간·아카이빙합니다.<br>
-        이 웹사이트는 그 모든 성과를 누구나 열람할 수 있도록 공개된 공간입니다.</p>
+        매 학기 탐구 결과물을 수집하고, 심사를 거쳐 학술지 형태로 발간·아카이빙합니다.</p>
       </div>
     </div>
-
     <div class="about-section">
       <h3>투고 트랙 안내</h3>
       <div class="track-info">
         <div class="track-info-card">
           <h4>📝 자유투고란</h4>
-          <p>형식 요건이 없는 탐구 보고서, 소논문, 실험 일지 등 모든 탐구 자료를 자유롭게 제출할 수 있습니다. 편집위원회의 기본 확인 후 게재됩니다.</p>
+          <p>형식 요건 없이 탐구 보고서, 소논문, 실험 일지 등을 자유롭게 제출할 수 있습니다.</p>
         </div>
         <div class="track-info-card" style="border-left:3px solid var(--teal)">
           <h4>🏆 우수투고란</h4>
-          <p>독창적 주제, 엄밀한 연구 방법, 충분한 근거를 갖춘 완성도 높은 논문을 대상으로 합니다. 편집위원 3인의 심사를 거쳐 선별 게재됩니다.</p>
+          <p>독창성과 완성도가 높은 논문. 편집위원 심사를 거쳐 선별 게재됩니다.</p>
         </div>
       </div>
     </div>
-
-    <div class="about-section">
-      <h3>우수투고란 심사 기준</h3>
-      <p>다음 세 가지 항목을 5점 척도로 평가합니다.</p>
-      <div style="display:flex;flex-direction:column;gap:0;margin-top:12px">
-        <div style="display:flex;gap:16px;padding:12px;background:#fff;border:1px solid var(--border);border-bottom:none">
-          <div style="font-weight:700;font-size:13px;color:var(--gold);width:24px;flex-shrink:0">①</div>
-          <div><strong style="font-size:13px;display:block;margin-bottom:2px">독창성</strong><span style="font-size:12px;color:var(--muted)">연구 주제 및 방법론의 새로운 접근</span></div>
-        </div>
-        <div style="display:flex;gap:16px;padding:12px;background:#fff;border:1px solid var(--border);border-bottom:none">
-          <div style="font-weight:700;font-size:13px;color:var(--gold);width:24px;flex-shrink:0">②</div>
-          <div><strong style="font-size:13px;display:block;margin-bottom:2px">방법론적 엄밀성</strong><span style="font-size:12px;color:var(--muted)">실험·분석 과정의 타당성과 재현 가능성</span></div>
-        </div>
-        <div style="display:flex;gap:16px;padding:12px;background:#fff;border:1px solid var(--border)">
-          <div style="font-weight:700;font-size:13px;color:var(--gold);width:24px;flex-shrink:0">③</div>
-          <div><strong style="font-size:13px;display:block;margin-bottom:2px">논리 구성</strong><span style="font-size:12px;color:var(--muted)">서론·본론·결론의 일관성 및 인용 충실성</span></div>
-        </div>
-      </div>
-    </div>
-
     <div class="about-section">
       <h3>2025학년도 일정</h3>
       <div class="timeline">
-        <div class="tl-item"><div class="tl-date">3월</div><div class="tl-content"><strong>1학기 자유투고 모집 시작</strong>상시 접수 (마감 없음)</div></div>
-        <div class="tl-item"><div class="tl-date">5월</div><div class="tl-content"><strong>1학기 우수투고 마감</strong>편집위원회 심사 시작</div></div>
-        <div class="tl-item"><div class="tl-date">7월</div><div class="tl-content"><strong>제3회 학술지 발간</strong>PDF 공개 및 인쇄본 배부</div></div>
-        <div class="tl-item"><div class="tl-date">9월</div><div class="tl-content"><strong>2학기 우수투고 모집 시작</strong>연구 발표회 동시 진행</div></div>
+        <div class="tl-item"><div class="tl-date">3월</div><div class="tl-content"><strong>1학기 자유투고 모집 시작</strong>상시 접수</div></div>
+        <div class="tl-item"><div class="tl-date">5월</div><div class="tl-content"><strong>1학기 우수투고 마감</strong>편집위원회 심사</div></div>
+        <div class="tl-item"><div class="tl-date">7월</div><div class="tl-content"><strong>제1회 학술지 발간</strong>PDF 공개 및 인쇄본 배부</div></div>
+        <div class="tl-item"><div class="tl-date">9월</div><div class="tl-content"><strong>2학기 우수투고 모집 시작</strong></div></div>
         <div class="tl-item"><div class="tl-date">12월</div><div class="tl-content"><strong>연말 학술 심포지엄</strong>우수논문 발표 및 시상</div></div>
       </div>
     </div>
-
     <div class="about-section">
       <h3>편집위원회</h3>
-      <p>편집위원회는 각 분야 담당 학생 편집위원으로 구성됩니다. 우수투고란의 투고 논문에 대해 연구의 독창성, 방법론적 엄밀성, 논리 구성의 타당성을 기준으로 심사합니다. 심사 결과와 피드백은 투고자에게 개별 통보됩니다.</p>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px">
-        <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:16px 18px">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px">총괄</div>
-          <div style="font-family:'Noto Serif KR',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:2px">이원희</div>
-          <div style="font-size:12px;color:var(--muted)">경포고등학교 정기학술회</div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+        <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px">
+          <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px">총괄</div>
+          <div style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)">이원희</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">경포고등학교 정기학술회</div>
         </div>
-        <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:16px 18px">
-          <div style="font-size:10px;font-weight:700;letter-spacing:0.1em;color:var(--gold);margin-bottom:6px">총괄</div>
-          <div style="font-family:'Noto Serif KR',serif;font-size:16px;font-weight:600;color:var(--navy);margin-bottom:2px">서형우</div>
-          <div style="font-size:12px;color:var(--muted)">경포고등학교 정기학술회</div>
+        <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px">
+          <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px">총괄</div>
+          <div style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)">서형우</div>
+          <div style="font-size:12px;color:var(--muted);margin-top:2px">경포고등학교 정기학술회</div>
         </div>
       </div>
     </div>
-
     <div class="about-section">
       <h3>생기부 활용 안내</h3>
-      <p>경포고 정기학술회에 논문을 게재한 경우, 탐구 활동 내용을 학교생활기록부 세부능력 및 특기사항(세특)에 기재할 수 있습니다. 게재 확인서 발급이 필요한 경우 총괄 이원희·서형우에게 문의하세요.</p>
+      <p>경포고 정기학술회에 논문을 게재한 경우, 학교생활기록부 세부능력 및 특기사항(세특)에 기재할 수 있습니다. 게재 확인서 발급이 필요한 경우 총괄 이원희·서형우에게 문의하세요.</p>
     </div>
+  </div>
+</div>
+
+<!-- MYPAGE -->
+<div id="page-mypage" class="page">
+  <div class="mypage">
+    <div class="mypage-header" id="mypage-header"></div>
+    <h3 style="font-family:'Noto Serif KR',serif;font-size:16px;color:var(--navy);margin-bottom:16px;border-bottom:2px solid var(--navy);padding-bottom:10px">내가 투고한 논문</h3>
+    <div id="my-papers"></div>
   </div>
 </div>
 
@@ -482,29 +439,43 @@
       <div class="modal-tags" id="modal-tags"></div>
       <h4>초록</h4>
       <p id="modal-abstract"></p>
-      <h4 style="margin-top:16px">키워드</h4>
+      <h4>키워드</h4>
       <p id="modal-keywords" style="color:var(--muted)"></p>
+    </div>
+    <div class="modal-actions">
+      <button class="btn-heart-big" id="modal-heart-btn" onclick="toggleHeart()">❤️ <span id="modal-heart-count">0</span></button>
+      <span style="font-size:12px;color:var(--muted)" id="modal-admin-actions"></span>
+    </div>
+    <div class="comments-section">
+      <div class="comments-title">COMMENTS</div>
+      <div id="comments-list"></div>
+      <div id="comment-form-wrap">
+        <div class="comment-form">
+          <input class="form-input" id="comment-input" placeholder="댓글을 입력하세요..." onkeydown="if(event.key==='Enter')addComment()">
+          <button class="btn-comment" onclick="addComment()">등록</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>
 
-<footer style="background:var(--navy);margin-top:60px;padding:28px 40px;text-align:center">
-  <div style="font-family:'Noto Serif KR',serif;color:var(--gold);font-size:14px;font-weight:600;margin-bottom:6px">경포고등학교 정기학술회</div>
-  <div style="font-size:12px;color:rgba(255,255,255,0.45);margin-bottom:4px">총괄 · 이원희 &nbsp;|&nbsp; 서형우</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.3)">© 2025 Gyeongpo High School Academic Journal. All rights reserved.</div>
+<div class="toast" id="toast"></div>
+<footer style="background:var(--navy);margin-top:60px;padding:24px 40px;text-align:center">
+  <div style="font-family:'Noto Serif KR',serif;color:var(--gold);font-size:13px;font-weight:600;margin-bottom:4px">경포고등학교 정기학술회</div>
+  <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:3px">총괄 · 이원희 &nbsp;|&nbsp; 서형우</div>
+  <div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2025 Gyeongpo High School Academic Journal</div>
 </footer>
 
-<div class="toast" id="toast">✅ 논문이 성공적으로 제출되었습니다!</div>
-
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
-import { getFirestore, collection, addDoc, getDocs, orderBy, query, serverTimestamp }
+import { getFirestore, collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc,
+         orderBy, query, serverTimestamp, arrayUnion, arrayRemove, increment }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
-/* ====== FIREBASE CONFIG ====== */
+const ADMIN_EMAIL = 'a01064587993@gmail.com';
+
 const firebaseConfig = {
   apiKey: "AIzaSyDhK3M_YFVEcIxK-LB6GgtljRizn7myunk",
   authDomain: "gyeongpo-journal.firebaseapp.com",
@@ -519,83 +490,93 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
 
-/* ====== STATE ====== */
 let currentUser = null;
 let papers = [];
 let selectedTrack = 'free';
+let currentModalPaperId = null;
 
-/* ====== FIELD MAP ====== */
+// ── FIELD MAP ──
 const fieldClass = {물리:'ft-physics',화학:'ft-chem',생명:'ft-bio',수학:'ft-math',정보:'ft-cs',지구:'ft-earth',융합:'ft-cs'};
-function getFieldClass(f){ for(const k in fieldClass){ if(f && f.startsWith(k)) return fieldClass[k]; } return 'ft-cs'; }
+function getFC(f){ for(const k in fieldClass){ if(f&&f.startsWith(k)) return fieldClass[k]; } return 'ft-cs'; }
+function isAdmin(user){ return user && user.email === ADMIN_EMAIL; }
 
-/* ====== AUTH ====== */
+// ── AUTH ──
 window.loginWithGoogle = async () => {
-  try {
-    await signInWithPopup(auth, provider);
-  } catch(e) {
-    alert('로그인에 실패했습니다. 다시 시도해주세요.');
-  }
+  try { await signInWithPopup(auth, provider); }
+  catch(e) { showToast('로그인에 실패했습니다.'); }
 };
+window.logoutUser = async () => { await signOut(auth); };
 
-window.logoutUser = async () => {
-  await signOut(auth);
-};
-
-onAuthStateChanged(auth, (user) => {
+onAuthStateChanged(auth, user => {
   currentUser = user;
   updateNavAuth(user);
+  updateSubmitForm(user);
+  if(document.getElementById('page-mypage').classList.contains('active')) renderMyPage();
 });
 
-function updateNavAuth(user) {
-  const navAuth = document.getElementById('nav-auth');
-  if (!navAuth) return;
-  if (user) {
-    navAuth.innerHTML = `
-      <div class="user-info">
-        <img class="user-avatar" src="${user.photoURL || ''}" onerror="this.style.display='none'">
-        <span class="user-name">${user.displayName || user.email}</span>
-        <button class="btn-logout" onclick="logoutUser()">로그아웃</button>
-      </div>`;
+function updateNavAuth(user){
+  const el = document.getElementById('nav-auth');
+  const mpBtn = document.getElementById('nav-mypage-btn');
+  if(user){
+    const adminBadge = isAdmin(user) ? '<span class="admin-badge">관리자</span>' : '';
+    el.innerHTML = `<div class="user-info">
+      <img class="user-avatar" src="${user.photoURL||''}" onerror="this.style.display='none'">
+      <span class="user-name">${user.displayName||user.email}</span>
+      ${adminBadge}
+      <button class="btn-logout" onclick="logoutUser()">로그아웃</button>
+    </div>`;
+    mpBtn.style.display = '';
   } else {
-    navAuth.innerHTML = `
-      <button class="btn-login" onclick="loginWithGoogle()">
-        <svg width="14" height="14" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#ccc" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#aaa" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        구글 로그인
-      </button>`;
+    el.innerHTML = `<button class="btn-login" onclick="loginWithGoogle()">
+      <svg width="13" height="13" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#ccc" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#aaa" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+      구글 로그인</button>`;
+    mpBtn.style.display = 'none';
   }
 }
 
-/* ====== FIRESTORE: LOAD PAPERS ====== */
-async function loadPapers() {
-  ['free-papers','best-papers','all-papers'].forEach(id => {
-    document.getElementById(id).innerHTML = '<div class="loading-spinner">📄 논문을 불러오는 중...</div>';
+function updateSubmitForm(user){
+  const loginMsg = document.getElementById('submit-login-msg');
+  const form = document.getElementById('submit-form');
+  if(!loginMsg || !form) return;
+  if(user){ loginMsg.style.display='none'; form.style.display=''; }
+  else { loginMsg.style.display=''; form.style.display='none'; }
+}
+
+// ── LOAD PAPERS ──
+async function loadPapers(){
+  ['free-papers','best-papers','all-papers'].forEach(id=>{
+    const el = document.getElementById(id);
+    if(el) el.innerHTML = '<div class="loading-spinner">📄 불러오는 중...</div>';
   });
   try {
-    const q = query(collection(db, 'papers'), orderBy('createdAt', 'desc'));
-    const snapshot = await getDocs(q);
-    papers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const q = query(collection(db,'papers'), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    papers = snap.docs.map(d=>({id:d.id,...d.data()}));
     renderAll();
-  } catch(e) {
+  } catch(e){
     console.error(e);
-    ['free-papers','best-papers','all-papers'].forEach(id => {
-      document.getElementById(id).innerHTML = '<div class="loading-spinner">데이터를 불러오지 못했습니다. 새로고침 해주세요.</div>';
+    ['free-papers','best-papers','all-papers'].forEach(id=>{
+      const el = document.getElementById(id);
+      if(el) el.innerHTML = '<div class="loading-spinner">불러오지 못했습니다. 새로고침 해주세요.</div>';
     });
   }
 }
 
-/* ====== RENDER ====== */
-const emptyMsg = (msg) => `<div style="text-align:center;padding:48px 0;color:var(--muted)">
-  <div style="font-size:32px;margin-bottom:12px">📭</div>
-  <div style="font-size:14px;font-weight:500;color:var(--navy);margin-bottom:6px">${msg}</div>
-  <div style="font-size:12px">논문을 투고하면 이곳에 게재됩니다.</div>
-</div>`;
+// ── RENDER ──
+const emptyMsg = msg => `<div class="empty-msg"><div class="empty-icon">📭</div><div class="empty-title">${msg}</div><div class="empty-sub">논문을 투고하면 이곳에 게재됩니다.</div></div>`;
 
-function renderCard(p) {
-  const fc = getFieldClass(p.field);
+function renderCard(p, showAdminBtns=false){
+  const fc = getFC(p.field);
+  const year = p.year||(p.createdAt?.toDate?p.createdAt.toDate().getFullYear():new Date().getFullYear());
   const trackLabel = p.track==='best'
     ? '<span style="font-size:10px;color:var(--teal);font-weight:700">▲ 우수투고</span>'
     : '<span style="font-size:10px;color:var(--muted)">자유투고</span>';
-  const year = p.year || (p.createdAt?.toDate ? p.createdAt.toDate().getFullYear() : new Date().getFullYear());
+  const hearts = p.hearts||0;
+  const adminBtns = showAdminBtns ? `
+    <div class="admin-actions">
+      <button class="btn-admin btn-feature" onclick="event.stopPropagation();toggleFeatured('${p.id}',${!!p.featured})">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>
+      <button class="btn-admin btn-delete" onclick="event.stopPropagation();deletePaper('${p.id}')">🗑 삭제</button>
+    </div>` : '';
   return `<div class="paper-card${p.featured?' featured':''}" onclick="openModal('${p.id}')">
     <div class="paper-meta">
       <span class="field-tag ${fc}">${p.field||''}</span>
@@ -606,173 +587,314 @@ function renderCard(p) {
     <div class="paper-authors">${p.authors||''}</div>
     <div class="paper-abstract">${p.abstract||''}</div>
     <div class="paper-footer">
-      <span style="font-size:11px;color:var(--muted)">${p.submitterName||''}</span>
-      <button class="btn-read" onclick="event.stopPropagation();openModal('${p.id}')">논문 보기 →</button>
+      <div class="paper-actions">
+        <button class="btn-heart${(currentUser&&(p.likedBy||[]).includes(currentUser.uid))?' liked':''}" onclick="event.stopPropagation();quickHeart('${p.id}')">❤️ ${hearts}</button>
+        ${adminBtns}
+      </div>
+      <button class="btn-read" onclick="event.stopPropagation();openModal('${p.id}')">보기 →</button>
     </div>
   </div>`;
 }
 
-function renderAll() {
+function renderAll(){
+  const admin = isAdmin(currentUser);
   const free = papers.filter(p=>p.track==='free');
   const best = papers.filter(p=>p.track==='best');
+  const fp = document.getElementById('free-papers');
+  const bp = document.getElementById('best-papers');
+  const ap = document.getElementById('all-papers');
+  if(fp) fp.innerHTML = free.length ? free.map(p=>renderCard(p,admin)).join('') : emptyMsg('아직 등록된 자유투고 논문이 없습니다');
+  if(bp) bp.innerHTML = best.length ? best.map(p=>renderCard(p,admin)).join('') : emptyMsg('아직 등록된 우수투고 논문이 없습니다');
+  if(ap) ap.innerHTML = papers.length ? papers.map(p=>renderCard(p,admin)).join('') : emptyMsg('아직 등록된 논문이 없습니다');
 
-  document.getElementById('free-papers').innerHTML = free.length ? free.map(renderCard).join('') : emptyMsg('아직 등록된 자유투고 논문이 없습니다');
-  document.getElementById('best-papers').innerHTML = best.length ? best.map(renderCard).join('') : emptyMsg('아직 등록된 우수투고 논문이 없습니다');
-  document.getElementById('all-papers').innerHTML = papers.length ? papers.map(renderCard).join('') : emptyMsg('아직 등록된 논문이 없습니다');
-
-  document.getElementById('stat-total').textContent = papers.length;
+  const el = id => document.getElementById(id);
+  el('stat-total').textContent = papers.length;
   const authorSet = new Set();
-  papers.forEach(p => (p.authors||'').split(/[·,]/).forEach(a => authorSet.add(a.trim())));
-  document.getElementById('stat-authors').textContent = authorSet.size;
-  document.getElementById('badge-free').textContent = free.length;
-  document.getElementById('badge-best').textContent = best.length;
+  papers.forEach(p=>(p.authors||'').split(/[·,]/).forEach(a=>authorSet.add(a.trim())));
+  el('stat-authors').textContent = authorSet.size;
+  el('badge-free').textContent = free.length;
+  el('badge-best').textContent = best.length;
 
   const fields = {물리:'cnt-physics',화학:'cnt-chem',생명:'cnt-bio',수학:'cnt-math',정보:'cnt-cs',지구:'cnt-earth'};
-  for(const [key, id] of Object.entries(fields)){
-    document.getElementById(id).textContent = papers.filter(p=>(p.field||'').startsWith(key)).length;
-  }
+  for(const [k,id] of Object.entries(fields))
+    el(id).textContent = papers.filter(p=>(p.field||'').startsWith(k)).length;
 
-  document.getElementById('papers-count-label').textContent = papers.length
+  el('papers-count-label').textContent = papers.length
     ? `총 ${papers.length}편의 탐구 자료가 아카이빙되어 있습니다.`
     : '아직 등록된 논문이 없습니다. 첫 번째 투고자가 되어보세요!';
 
-  document.getElementById('recent-list').innerHTML = papers.length
-    ? papers.slice(0,4).map(p=>`
-        <div class="recent-item" onclick="openModal('${p.id}')">
-          <div class="recent-title">${p.title||''}</div>
-          <div class="recent-meta">${p.authors||''}</div>
-        </div>`).join('')
+  el('recent-list').innerHTML = papers.length
+    ? papers.slice(0,4).map(p=>`<div class="recent-item" onclick="openModal('${p.id}')">
+        <div class="recent-title">${p.title||''}</div>
+        <div class="recent-meta">${p.authors||''}</div>
+      </div>`).join('')
     : '<div style="font-size:12px;color:var(--muted);padding:8px 0">아직 게재된 논문이 없습니다.</div>';
 }
 
-/* ====== FILTER ====== */
+// ── MYPAGE ──
+function renderMyPage(){
+  if(!currentUser){ return; }
+  const myPapers = papers.filter(p=>p.submitterUid===currentUser.uid);
+  const el = id => document.getElementById(id);
+  el('mypage-header').innerHTML = `
+    <img class="mypage-avatar" src="${currentUser.photoURL||''}" onerror="this.style.display='none'">
+    <div class="mypage-info">
+      <h2>${currentUser.displayName||currentUser.email} ${isAdmin(currentUser)?'<span class="admin-badge" style="font-size:12px">관리자</span>':''}</h2>
+      <p>${currentUser.email}</p>
+      <div class="mypage-stats">
+        <div class="mypage-stat"><div class="mypage-stat-num">${myPapers.length}</div><div class="mypage-stat-label">투고 논문</div></div>
+        <div class="mypage-stat"><div class="mypage-stat-num">${myPapers.filter(p=>p.featured).length}</div><div class="mypage-stat-label">우수논문</div></div>
+        <div class="mypage-stat"><div class="mypage-stat-num">${myPapers.reduce((a,p)=>a+(p.hearts||0),0)}</div><div class="mypage-stat-label">받은 하트</div></div>
+      </div>
+    </div>`;
+  const mp = el('my-papers');
+  mp.innerHTML = myPapers.length
+    ? myPapers.map(p=>renderCard(p, isAdmin(currentUser))).join('')
+    : emptyMsg('아직 투고한 논문이 없습니다');
+}
+
+// ── FILTER ──
 window.filterPapers = () => {
   const q = document.getElementById('search-input').value.toLowerCase();
   const field = document.getElementById('field-filter').value;
   const track = document.getElementById('track-filter').value;
-  const filtered = papers.filter(p => {
-    const matchQ = !q || (p.title||'').includes(q) || (p.authors||'').includes(q) || (p.keywords||'').toLowerCase().includes(q);
-    const matchF = !field || (p.field||'').startsWith(field.slice(0,2));
-    const matchT = !track || p.track===track;
-    return matchQ && matchF && matchT;
+  const admin = isAdmin(currentUser);
+  const filtered = papers.filter(p=>{
+    const mQ = !q||(p.title||'').includes(q)||(p.authors||'').includes(q)||(p.keywords||'').toLowerCase().includes(q);
+    const mF = !field||(p.field||'').startsWith(field.slice(0,2));
+    const mT = !track||p.track===track;
+    return mQ&&mF&&mT;
   });
   document.getElementById('all-papers').innerHTML = filtered.length
-    ? filtered.map(renderCard).join('')
+    ? filtered.map(p=>renderCard(p,admin)).join('')
     : '<p style="color:var(--muted);font-size:14px;padding:20px 0">검색 결과가 없습니다.</p>';
 };
 
-/* ====== NAVIGATION ====== */
+// ── NAV ──
 window.showPage = (id, btn) => {
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById('page-'+id).classList.add('active');
   document.querySelectorAll('.nav-links button').forEach(b=>b.classList.remove('active'));
   if(btn) btn.classList.add('active');
   window.scrollTo(0,0);
+  if(id==='mypage') renderMyPage();
 };
-
 window.showTab = (id, btn) => {
-  document.getElementById('tab-free').style.display = id==='free' ? '' : 'none';
-  document.getElementById('tab-best').style.display = id==='best' ? '' : 'none';
+  document.getElementById('tab-free').style.display = id==='free'?'':'none';
+  document.getElementById('tab-best').style.display = id==='best'?'':'none';
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 };
-
-window.goFieldFilter = (field) => {
+window.goFieldFilter = field => {
   window.showPage('papers', document.querySelector('.nav-links button:nth-child(2)'));
   document.getElementById('field-filter').value = field;
   window.filterPapers();
 };
 
-/* ====== MODAL ====== */
-window.openModal = (id) => {
+// ── MODAL ──
+window.openModal = async id => {
   const p = papers.find(x=>x.id===id);
   if(!p) return;
-  const year = p.year || (p.createdAt?.toDate ? p.createdAt.toDate().getFullYear() : '');
+  currentModalPaperId = id;
+  const year = p.year||(p.createdAt?.toDate?p.createdAt.toDate().getFullYear():'');
   const trackBadge = p.track==='best'
-    ? '<span style="background:var(--teal);color:#fff;font-size:10px;padding:2px 8px;margin-right:6px;border-radius:2px">우수투고</span>'
-    : '<span style="background:var(--cream2);color:var(--muted);font-size:10px;padding:2px 8px;margin-right:6px;border-radius:2px">자유투고</span>';
+    ? '<span style="background:var(--teal);color:#fff;font-size:10px;padding:2px 8px;border-radius:2px">우수투고</span>'
+    : '<span style="background:var(--cream2);color:var(--muted);font-size:10px;padding:2px 8px;border-radius:2px">자유투고</span>';
   document.getElementById('modal-title').textContent = p.title||'';
   document.getElementById('modal-meta').textContent = `${p.authors||''} · ${p.field||''} · ${year}`;
-  document.getElementById('modal-tags').innerHTML = `${trackBadge}<span class="field-tag ${getFieldClass(p.field)}">${p.field||''}</span>`;
+  document.getElementById('modal-tags').innerHTML = `${trackBadge} <span class="field-tag ${getFC(p.field)}">${p.field||''}</span>${p.featured?'<span style="background:var(--gold);color:var(--navy);font-size:10px;padding:2px 8px;border-radius:2px;font-weight:700;margin-left:4px">우수논문</span>':''}`;
   document.getElementById('modal-abstract').textContent = p.abstract||'';
   document.getElementById('modal-keywords').textContent = p.keywords||'';
+
+  const hearts = p.hearts||0;
+  const liked = currentUser&&(p.likedBy||[]).includes(currentUser.uid);
+  const heartBtn = document.getElementById('modal-heart-btn');
+  heartBtn.className = 'btn-heart-big'+(liked?' liked':'');
+  document.getElementById('modal-heart-count').textContent = hearts;
+
+  // admin actions in modal
+  const adminEl = document.getElementById('modal-admin-actions');
+  if(isAdmin(currentUser)){
+    adminEl.innerHTML = `<button class="btn-admin btn-feature" onclick="toggleFeatured('${id}',${!!p.featured})" style="margin-right:6px">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>
+    <button class="btn-admin btn-delete" onclick="deletePaper('${id}')">🗑 삭제</button>`;
+  } else { adminEl.innerHTML=''; }
+
+  // load comments
+  await loadComments(id);
   document.getElementById('modal').classList.add('open');
+
+  // show/hide comment form
+  const cfw = document.getElementById('comment-form-wrap');
+  cfw.style.display = currentUser ? '' : '<div style="font-size:12px;color:var(--muted);padding:8px 0">댓글을 달려면 로그인하세요.</div>';
+  if(!currentUser) cfw.innerHTML = '<p style="font-size:12px;color:var(--muted);margin-top:10px">댓글을 달려면 로그인하세요.</p>';
+  else cfw.innerHTML = `<div class="comment-form"><input class="form-input" id="comment-input" placeholder="댓글을 입력하세요..." onkeydown="if(event.key==='Enter')addComment()"><button class="btn-comment" onclick="addComment()">등록</button></div>`;
 };
 
-window.closeModalOutside = (e) => {
+window.closeModalOutside = e => {
   if(e.target===document.getElementById('modal')) document.getElementById('modal').classList.remove('open');
 };
 
-/* ====== SUBMIT ====== */
-window.selectTrack = (val) => {
+// ── HEARTS ──
+window.toggleHeart = async () => {
+  if(!currentUser){ showToast('로그인 후 하트를 누를 수 있습니다.'); return; }
+  const id = currentModalPaperId;
+  const p = papers.find(x=>x.id===id);
+  if(!p) return;
+  const liked = (p.likedBy||[]).includes(currentUser.uid);
+  const ref = doc(db,'papers',id);
+  if(liked){
+    await updateDoc(ref,{likedBy:arrayRemove(currentUser.uid),hearts:increment(-1)});
+    p.likedBy = (p.likedBy||[]).filter(u=>u!==currentUser.uid);
+    p.hearts = Math.max(0,(p.hearts||1)-1);
+  } else {
+    await updateDoc(ref,{likedBy:arrayUnion(currentUser.uid),hearts:increment(1)});
+    p.likedBy = [...(p.likedBy||[]),currentUser.uid];
+    p.hearts = (p.hearts||0)+1;
+  }
+  const heartBtn = document.getElementById('modal-heart-btn');
+  heartBtn.className = 'btn-heart-big'+(!liked?' liked':'');
+  document.getElementById('modal-heart-count').textContent = p.hearts;
+  renderAll();
+};
+
+window.quickHeart = async id => {
+  if(!currentUser){ showToast('로그인 후 하트를 누를 수 있습니다.'); return; }
+  const p = papers.find(x=>x.id===id);
+  if(!p) return;
+  const liked = (p.likedBy||[]).includes(currentUser.uid);
+  const ref = doc(db,'papers',id);
+  if(liked){
+    await updateDoc(ref,{likedBy:arrayRemove(currentUser.uid),hearts:increment(-1)});
+    p.likedBy = (p.likedBy||[]).filter(u=>u!==currentUser.uid);
+    p.hearts = Math.max(0,(p.hearts||1)-1);
+  } else {
+    await updateDoc(ref,{likedBy:arrayUnion(currentUser.uid),hearts:increment(1)});
+    p.likedBy = [...(p.likedBy||[]),currentUser.uid];
+    p.hearts = (p.hearts||0)+1;
+  }
+  renderAll();
+};
+
+// ── COMMENTS ──
+async function loadComments(paperId){
+  const list = document.getElementById('comments-list');
+  list.innerHTML = '<div style="font-size:12px;color:var(--muted)">댓글 불러오는 중...</div>';
+  try {
+    const q = query(collection(db,'papers',paperId,'comments'),orderBy('createdAt','asc'));
+    const snap = await getDocs(q);
+    if(snap.empty){ list.innerHTML='<div style="font-size:12px;color:var(--muted);padding:8px 0">아직 댓글이 없습니다.</div>'; return; }
+    list.innerHTML = snap.docs.map(d=>{
+      const c = d.data();
+      const dateStr = c.createdAt?.toDate ? c.createdAt.toDate().toLocaleDateString('ko-KR') : '';
+      const canDelete = currentUser&&(currentUser.uid===c.authorUid||isAdmin(currentUser));
+      return `<div class="comment-item">
+        <div class="comment-author">${c.authorName||'익명'}${isAdmin({email:c.authorEmail})?' <span class="admin-badge">관리자</span>':''}
+          ${canDelete?`<button class="btn-comment-delete" onclick="deleteComment('${paperId}','${d.id}')">삭제</button>`:''}
+        </div>
+        <div class="comment-text">${c.text||''}</div>
+        <div class="comment-date">${dateStr}</div>
+      </div>`;
+    }).join('');
+  } catch(e){ list.innerHTML='<div style="font-size:12px;color:var(--muted)">댓글을 불러오지 못했습니다.</div>'; }
+}
+
+window.addComment = async () => {
+  if(!currentUser){ showToast('로그인이 필요합니다.'); return; }
+  const input = document.getElementById('comment-input');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  try {
+    await addDoc(collection(db,'papers',currentModalPaperId,'comments'),{
+      text, authorName: currentUser.displayName||currentUser.email,
+      authorEmail: currentUser.email, authorUid: currentUser.uid,
+      createdAt: serverTimestamp()
+    });
+    await loadComments(currentModalPaperId);
+  } catch(e){ showToast('댓글 등록에 실패했습니다.'); }
+};
+
+window.deleteComment = async (paperId, commentId) => {
+  if(!confirm('댓글을 삭제할까요?')) return;
+  try {
+    await deleteDoc(doc(db,'papers',paperId,'comments',commentId));
+    await loadComments(paperId);
+    showToast('댓글이 삭제되었습니다.');
+  } catch(e){ showToast('삭제에 실패했습니다.'); }
+};
+
+// ── ADMIN ──
+window.deletePaper = async id => {
+  if(!isAdmin(currentUser)){ showToast('관리자만 삭제할 수 있습니다.'); return; }
+  if(!confirm('이 논문을 삭제할까요?')) return;
+  try {
+    await deleteDoc(doc(db,'papers',id));
+    papers = papers.filter(p=>p.id!==id);
+    renderAll();
+    document.getElementById('modal').classList.remove('open');
+    showToast('논문이 삭제되었습니다.');
+  } catch(e){ showToast('삭제에 실패했습니다.'); }
+};
+
+window.toggleFeatured = async (id, current) => {
+  if(!isAdmin(currentUser)){ showToast('관리자만 가능합니다.'); return; }
+  try {
+    await updateDoc(doc(db,'papers',id),{featured:!current});
+    const p = papers.find(x=>x.id===id);
+    if(p) p.featured = !current;
+    renderAll();
+    document.getElementById('modal').classList.remove('open');
+    showToast(current ? '우수논문 지정이 해제되었습니다.' : '우수논문으로 지정되었습니다! ⭐');
+  } catch(e){ showToast('변경에 실패했습니다.'); }
+};
+
+// ── SUBMIT ──
+window.selectTrack = val => {
   selectedTrack = val;
   document.getElementById('track-free').classList.toggle('selected', val==='free');
   document.getElementById('track-best').classList.toggle('selected', val==='best');
 };
-
-window.updateFileName = (input) => {
+window.updateFileName = input => {
   if(input.files[0]) document.getElementById('file-name').textContent = '✓ '+input.files[0].name;
 };
 
 window.submitPaper = async () => {
-  if(!currentUser) {
-    alert('논문을 투고하려면 구글 로그인이 필요합니다.');
-    return;
-  }
-  const title = document.getElementById('f-title').value.trim();
-  const authors = document.getElementById('f-authors').value.trim();
-  const field = document.getElementById('f-field').value;
-  const abstract = document.getElementById('f-abstract').value.trim();
-  const cls = document.getElementById('f-class').value.trim();
-  const keywords = document.getElementById('f-keywords').value.trim();
-  const teacher = document.getElementById('f-teacher').value.trim();
-
-  if(!title||!authors||!field||!abstract||!cls){
-    alert('필수 항목(*)을 모두 입력해주세요.');
-    return;
-  }
-  if(abstract.length < 100){
-    alert('초록은 100자 이상 작성해주세요.');
-    return;
-  }
-
+  if(!currentUser){ showToast('로그인이 필요합니다.'); return; }
+  const g = id => document.getElementById(id).value.trim();
+  const title=g('f-title'), authors=g('f-authors'), field=document.getElementById('f-field').value,
+        abstract=g('f-abstract'), cls=g('f-class');
+  if(!title||!authors||!field||!abstract||!cls){ alert('필수 항목(*)을 모두 입력해주세요.'); return; }
+  if(abstract.length<100){ alert('초록은 100자 이상 작성해주세요.'); return; }
   const btn = document.querySelector('.btn-full');
-  btn.textContent = '제출 중...';
-  btn.disabled = true;
-
+  btn.textContent='제출 중...'; btn.disabled=true;
   try {
-    await addDoc(collection(db, 'papers'), {
-      title, authors, field, abstract, keywords, teacher,
-      track: selectedTrack,
-      year: new Date().getFullYear(),
-      submitterName: currentUser.displayName || currentUser.email,
-      submitterUid: currentUser.uid,
-      createdAt: serverTimestamp(),
-      featured: false
+    await addDoc(collection(db,'papers'),{
+      title, authors, field, abstract,
+      keywords:g('f-keywords'), teacher:g('f-teacher'),
+      track:selectedTrack, year:new Date().getFullYear(),
+      submitterName:currentUser.displayName||currentUser.email,
+      submitterUid:currentUser.uid, submitterEmail:currentUser.email,
+      createdAt:serverTimestamp(), featured:false, hearts:0, likedBy:[]
     });
-
-    const toast = document.getElementById('toast');
-    toast.style.display = 'block';
-    setTimeout(()=>{ toast.style.display='none'; }, 3500);
-
-    ['f-title','f-authors','f-class','f-abstract','f-keywords','f-teacher'].forEach(id=>{ document.getElementById(id).value=''; });
-    document.getElementById('f-field').value = '';
-    document.getElementById('file-name').textContent = '';
+    showToast('✅ 논문이 성공적으로 제출되었습니다!');
+    ['f-title','f-authors','f-class','f-abstract','f-keywords','f-teacher'].forEach(id=>{document.getElementById(id).value='';});
+    document.getElementById('f-field').value='';
+    document.getElementById('file-name').textContent='';
     window.selectTrack('free');
-
     await loadPapers();
-  } catch(e) {
-    alert('제출에 실패했습니다. 다시 시도해주세요.');
-    console.error(e);
-  } finally {
-    btn.textContent = '논문 제출하기 →';
-    btn.disabled = false;
-  }
+  } catch(e){ alert('제출에 실패했습니다. 다시 시도해주세요.'); console.error(e); }
+  finally { btn.textContent='논문 제출하기 →'; btn.disabled=false; }
 };
 
-/* ====== START ====== */
+// ── TOAST ──
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.style.display='block';
+  setTimeout(()=>{ t.style.display='none'; }, 3000);
+}
+
+// ── START ──
 loadPapers();
 </script>
-
 </body>
 </html>
