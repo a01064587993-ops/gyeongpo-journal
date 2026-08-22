@@ -8,11 +8,11 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --navy:#0a1628;--navy2:#112240;--navy3:#1d3a6b;
-  --gold:#c9a84c;--gold2:#e8c96a;
-  --cream:#f8f5ef;--cream2:#ede8dd;
-  --text:#1a1a2e;--muted:#6b7080;--border:#d4cfc4;--card:#ffffff;
-  --red:#b8362a;--teal:#1a6b6b;
+--navy:#0a1628;--navy2:#112240;--navy3:#1d3a6b;
+--gold:#c9a84c;--gold2:#e8c96a;
+--cream:#f8f5ef;--cream2:#ede8dd;
+--text:#1a1a2e;--muted:#6b7080;--border:#d4cfc4;--card:#ffffff;
+--red:#b8362a;--teal:#1a6b6b;
 }
 body{font-family:'Noto Sans KR',sans-serif;background:var(--cream);color:var(--text);min-height:100vh}
 nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justify-content:space-between;height:56px;position:sticky;top:0;z-index:100}
@@ -59,21 +59,25 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .ft-physics{background:#e8f0f8;color:#1a4a7a}.ft-chem{background:#fff0e8;color:#7a3a1a}
 .ft-bio{background:#e8f5e8;color:#1a5a1a}.ft-math{background:#f0e8f5;color:#4a1a7a}
 .ft-cs{background:#e8f5f5;color:#1a5a5a}.ft-earth{background:#f5f5e8;color:#5a5a1a}
+.ft-econ{background:#fdf0f0;color:#8a1a2a}.ft-biz{background:#f0f0fa;color:#2a2a7a}
+.ft-social{background:#fef5e0;color:#8a5a00}.ft-history{background:#f5ece0;color:#6a4520}
+.ft-lit{background:#faf0f5;color:#7a1a4a}.ft-psych{background:#e0f5f0;color:#0a6a55}
 .paper-year{font-size:11px;color:var(--muted)}
 .paper-title{font-family:'Noto Serif KR',serif;font-size:14px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:5px}
 .paper-authors{font-size:12px;color:var(--muted);margin-bottom:7px}
 .paper-abstract{font-size:12px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .paper-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--cream2)}
-.paper-actions{display:flex;align-items:center;gap:8px}
+.paper-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 .btn-heart{background:none;border:none;cursor:pointer;font-size:13px;color:var(--muted);display:flex;align-items:center;gap:3px;font-family:'Noto Sans KR',sans-serif;padding:2px 6px;border-radius:3px;transition:all .2s}
 .btn-heart:hover{background:#fff0f0;color:var(--red)}
 .btn-heart.liked{color:var(--red);font-weight:700}
 .btn-read{background:none;border:1px solid var(--navy);color:var(--navy);font-size:11px;padding:4px 10px;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:500;transition:all .2s}
 .btn-read:hover{background:var(--navy);color:#fff}
-.admin-actions{display:flex;gap:6px}
-.btn-admin{font-size:10px;padding:3px 8px;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:700;border-radius:2px}
+.admin-actions{display:flex;gap:6px;flex-wrap:wrap}
+.btn-admin{font-size:10px;padding:3px 8px;border:none;cursor:pointer;font-family:'Noto Sans KR',sans-serif;font-weight:700;border-radius:2px;white-space:nowrap}
 .btn-delete{background:#fee;color:var(--red)}
 .btn-feature{background:#fffbe8;color:#7a5a00}
+.btn-promote{background:#e8f0fa;color:#1a4a7a}
 .sidebar{padding-left:24px;border-left:1px solid var(--border)}
 .sidebar-block{margin-bottom:24px}
 .sidebar-title{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:7px;margin-bottom:12px}
@@ -141,6 +145,20 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .mypage-stat{text-align:center}
 .mypage-stat-num{font-size:18px;font-weight:700;color:var(--gold)}
 .mypage-stat-label{font-size:11px;color:rgba(255,255,255,0.5)}
+/* COMMUNITY */
+.community-page{max-width:760px;margin:0 auto;padding:36px 40px}
+.community-header{margin-bottom:20px}
+.community-header h2{font-family:'Noto Serif KR',serif;font-size:19px;color:var(--navy);margin-bottom:5px}
+.community-header p{font-size:13px;color:var(--muted)}
+.community-write{background:#fff;border:1px solid var(--border);padding:16px;margin-bottom:20px}
+.community-write .form-input{margin-bottom:8px}
+.community-write .form-textarea{height:80px;margin-bottom:8px}
+.post-card{background:var(--card);border:1px solid var(--border);padding:16px 18px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.post-card:hover{border-color:var(--navy3);box-shadow:2px 2px 0 var(--cream2)}
+.post-title{font-family:'Noto Serif KR',serif;font-size:14px;font-weight:600;color:var(--text);margin-bottom:5px}
+.post-meta{font-size:11px;color:var(--muted);margin-bottom:7px}
+.post-preview{font-size:12px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.post-footer{display:flex;justify-content:space-between;align-items:center;margin-top:10px;padding-top:8px;border-top:1px solid var(--cream2);font-size:11px;color:var(--muted)}
 /* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(10,22,40,0.8);z-index:200;align-items:flex-start;justify-content:center;overflow-y:auto;padding:40px 16px}
 .modal-overlay.open{display:flex}
@@ -176,294 +194,346 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .empty-msg .empty-sub{font-size:12px}
 .loading-spinner{text-align:center;padding:40px;color:var(--muted);font-size:13px}
 @media(max-width:768px){
-  .main-layout{grid-template-columns:1fr}
-  .sidebar{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:20px;margin-top:8px}
-  .hero-stats{gap:20px}.hero h1{font-size:22px}
-  nav{padding:0 14px}.nav-links{gap:10px}
-  .main-layout,.papers-page,.submit-page,.about-page,.mypage{padding:20px 16px}
-  .track-selector,.form-row,.track-info{grid-template-columns:1fr}
-  .modal{width:95vw}.mypage-header{flex-direction:column;text-align:center}
+.main-layout{grid-template-columns:1fr}
+.sidebar{padding-left:0;border-left:none;border-top:1px solid var(--border);padding-top:20px;margin-top:8px}
+.hero-stats{gap:20px}.hero h1{font-size:22px}
+nav{padding:0 14px}.nav-links{gap:10px}
+.main-layout,.papers-page,.submit-page,.about-page,.mypage,.community-page{padding:20px 16px}
+.track-selector,.form-row,.track-info{grid-template-columns:1fr}
+.modal{width:95vw}.mypage-header{flex-direction:column;text-align:center}
 }
 </style>
 </head>
 <body>
-
 <nav>
-  <div class="nav-logo" onclick="showPage('home',null)">⬡ 경포고 정기학술회</div>
-  <div class="nav-links">
-    <button class="active" onclick="showPage('home',this)">홈</button>
-    <button onclick="showPage('papers',this)">논문 목록</button>
-    <button onclick="showPage('submit',this)">논문 투고</button>
-    <button onclick="showPage('about',this)">소개</button>
-    <button id="nav-mypage-btn" style="display:none" onclick="showPage('mypage',this)">👤 마이페이지</button>
-  </div>
-  <div class="nav-right">
-    <div id="nav-auth"></div>
-    <button class="btn-submit" onclick="showPage('submit',null)">📄 투고하기</button>
-  </div>
+<div class="nav-logo" onclick="showPage('home',null)">⬡ 경포고 정기학술회</div>
+<div class="nav-links">
+<button class="active" onclick="showPage('home',this)">홈</button>
+<button onclick="showPage('papers',this)">논문 목록</button>
+<button onclick="showPage('submit',this)">논문 투고</button>
+<button onclick="showPage('community',this)">커뮤니티</button>
+<button onclick="showPage('about',this)">소개</button>
+<button id="nav-mypage-btn" style="display:none" onclick="showPage('mypage',this)">👤 마이페이지</button>
+</div>
+<div class="nav-right">
+<div id="nav-auth"></div>
+<button class="btn-submit" onclick="showPage('submit',null)">📄 투고하기</button>
+</div>
 </nav>
 
 <!-- HOME -->
 <div id="page-home" class="page active">
-  <div class="hero">
-    <div class="hero-inner">
-      <div class="hero-badge">GYEONGPO HIGH SCHOOL ACADEMIC JOURNAL</div>
-      <h1>경포고등학교 정기학술회<br>탐구 아카이브</h1>
-      <p class="hero-sub">우리 학교 학생들의 연구 성과를 보존하고 공유합니다.<br>자유투고란과 우수투고란, 두 트랙으로 운영됩니다.</p>
-      <div class="hero-stats">
-        <div class="stat-item"><div class="stat-num" id="stat-total">0</div><div class="stat-label">등록 논문</div></div>
-        <div class="stat-item"><div class="stat-num" id="stat-authors">0</div><div class="stat-label">투고 학생</div></div>
-        <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">학술회 기수</div></div>
-      </div>
-    </div>
-  </div>
-  <div class="section-tabs">
-    <button class="tab-btn active" onclick="showTab('free',this)">자유투고 <span class="tab-badge" id="badge-free">0</span></button>
-    <button class="tab-btn" onclick="showTab('best',this)">우수투고 <span class="tab-badge teal" id="badge-best">0</span></button>
-  </div>
-  <div class="main-layout">
-    <div>
-      <div id="tab-free">
-        <div class="section-header">
-          <div class="section-tag">자유투고란</div>
-          <div class="section-title">탐구 보고서 · 소논문</div>
-          <div class="section-desc">누구나 투고 가능</div>
-        </div>
-        <div id="free-papers"></div>
-      </div>
-      <div id="tab-best" style="display:none">
-        <div class="section-header">
-          <div class="section-tag" style="background:var(--teal)">우수투고란</div>
-          <div class="section-title">심사 통과 우수 논문</div>
-          <div class="section-desc">편집위원회 심사 후 게재</div>
-        </div>
-        <div id="best-papers"></div>
-      </div>
-    </div>
-    <div class="sidebar">
-      <div class="sidebar-block">
-        <div class="sidebar-title">분야별 탐색</div>
-        <div class="category-item" onclick="goFieldFilter('물리')"><span class="cat-name">🔭 물리·천문</span><span class="cat-count" id="cnt-physics">0</span></div>
-        <div class="category-item" onclick="goFieldFilter('화학')"><span class="cat-name">⚗️ 화학</span><span class="cat-count" id="cnt-chem">0</span></div>
-        <div class="category-item" onclick="goFieldFilter('생명')"><span class="cat-name">🧬 생명과학</span><span class="cat-count" id="cnt-bio">0</span></div>
-        <div class="category-item" onclick="goFieldFilter('수학')"><span class="cat-name">📐 수학</span><span class="cat-count" id="cnt-math">0</span></div>
-        <div class="category-item" onclick="goFieldFilter('정보')"><span class="cat-name">💻 정보과학</span><span class="cat-count" id="cnt-cs">0</span></div>
-        <div class="category-item" onclick="goFieldFilter('지구')"><span class="cat-name">🌍 지구과학</span><span class="cat-count" id="cnt-earth">0</span></div>
-      </div>
-      <div class="sidebar-block">
-        <div class="sidebar-title">최근 게재</div>
-        <div id="recent-list"></div>
-      </div>
-    </div>
-  </div>
+<div class="hero">
+<div class="hero-inner">
+<div class="hero-badge">GYEONGPO HIGH SCHOOL ACADEMIC JOURNAL</div>
+<h1>경포고등학교 정기학술회<br>탐구 아카이브</h1>
+<p class="hero-sub">우리 학교 학생들의 연구 성과를 보존하고 공유합니다.<br>자유투고란과 우수투고란, 두 트랙으로 운영됩니다.</p>
+<div class="hero-stats">
+<div class="stat-item"><div class="stat-num" id="stat-total">0</div><div class="stat-label">등록 논문</div></div>
+<div class="stat-item"><div class="stat-num" id="stat-authors">0</div><div class="stat-label">투고 학생</div></div>
+<div class="stat-item"><div class="stat-num">1</div><div class="stat-label">학술회 기수</div></div>
+</div>
+</div>
+</div>
+<div class="section-tabs">
+<button class="tab-btn active" onclick="showTab('free',this)">자유투고 <span class="tab-badge" id="badge-free">0</span></button>
+<button class="tab-btn" onclick="showTab('best',this)">우수투고 <span class="tab-badge teal" id="badge-best">0</span></button>
+</div>
+<div class="main-layout">
+<div>
+<div id="tab-free">
+<div class="section-header">
+<div class="section-tag">자유투고란</div>
+<div class="section-title">탐구 보고서 · 소논문</div>
+<div class="section-desc">누구나 투고 가능</div>
+</div>
+<div id="free-papers"></div>
+</div>
+<div id="tab-best" style="display:none">
+<div class="section-header">
+<div class="section-tag" style="background:var(--teal)">우수투고란</div>
+<div class="section-title">심사 통과 우수 논문</div>
+<div class="section-desc">편집위원회 심사 후 게재</div>
+</div>
+<div id="best-papers"></div>
+</div>
+</div>
+<div class="sidebar">
+<div class="sidebar-block">
+<div class="sidebar-title">이과 분야 탐색</div>
+<div class="category-item" onclick="goFieldFilter('물리')"><span class="cat-name">🔭 물리·천문</span><span class="cat-count" id="cnt-physics">0</span></div>
+<div class="category-item" onclick="goFieldFilter('화학')"><span class="cat-name">⚗️ 화학</span><span class="cat-count" id="cnt-chem">0</span></div>
+<div class="category-item" onclick="goFieldFilter('생명')"><span class="cat-name">🧬 생명과학</span><span class="cat-count" id="cnt-bio">0</span></div>
+<div class="category-item" onclick="goFieldFilter('수학')"><span class="cat-name">📐 수학</span><span class="cat-count" id="cnt-math">0</span></div>
+<div class="category-item" onclick="goFieldFilter('정보')"><span class="cat-name">💻 정보과학</span><span class="cat-count" id="cnt-cs">0</span></div>
+<div class="category-item" onclick="goFieldFilter('지구')"><span class="cat-name">🌍 지구과학</span><span class="cat-count" id="cnt-earth">0</span></div>
+</div>
+<div class="sidebar-block">
+<div class="sidebar-title">문과 분야 탐색</div>
+<div class="category-item" onclick="goFieldFilter('경제')"><span class="cat-name">💰 경제</span><span class="cat-count" id="cnt-econ">0</span></div>
+<div class="category-item" onclick="goFieldFilter('경영')"><span class="cat-name">💼 경영</span><span class="cat-count" id="cnt-biz">0</span></div>
+<div class="category-item" onclick="goFieldFilter('사회')"><span class="cat-name">🏛️ 사회</span><span class="cat-count" id="cnt-social">0</span></div>
+<div class="category-item" onclick="goFieldFilter('역사')"><span class="cat-name">📜 역사</span><span class="cat-count" id="cnt-history">0</span></div>
+<div class="category-item" onclick="goFieldFilter('문학')"><span class="cat-name">📖 문학</span><span class="cat-count" id="cnt-lit">0</span></div>
+<div class="category-item" onclick="goFieldFilter('심리')"><span class="cat-name">🧠 심리</span><span class="cat-count" id="cnt-psych">0</span></div>
+</div>
+<div class="sidebar-block">
+<div class="sidebar-title">최근 게재</div>
+<div id="recent-list"></div>
+</div>
+</div>
+</div>
 </div>
 
 <!-- PAPERS LIST -->
 <div id="page-papers" class="page">
-  <div class="papers-page">
-    <div style="margin-bottom:20px">
-      <h2 style="font-family:'Noto Serif KR',serif;font-size:19px;color:var(--navy);margin-bottom:5px">전체 논문 목록</h2>
-      <p style="font-size:13px;color:var(--muted)" id="papers-count-label">전체 논문을 열람할 수 있습니다.</p>
-    </div>
-    <div class="search-bar">
-      <input class="form-input" placeholder="제목, 저자, 키워드 검색..." id="search-input" oninput="filterPapers()">
-      <select class="form-select" id="field-filter" onchange="filterPapers()">
-        <option value="">전체 분야</option>
-        <option value="물리">물리·천문</option><option value="화학">화학</option>
-        <option value="생명">생명과학</option><option value="수학">수학</option>
-        <option value="정보">정보과학</option><option value="지구">지구과학</option>
-      </select>
-      <select class="form-select" id="track-filter" onchange="filterPapers()">
-        <option value="">전체 트랙</option>
-        <option value="free">자유투고</option><option value="best">우수투고</option>
-      </select>
-    </div>
-    <div id="all-papers"></div>
-  </div>
+<div class="papers-page">
+<div style="margin-bottom:20px">
+<h2 style="font-family:'Noto Serif KR',serif;font-size:19px;color:var(--navy);margin-bottom:5px">전체 논문 목록</h2>
+<p style="font-size:13px;color:var(--muted)" id="papers-count-label">전체 논문을 열람할 수 있습니다.</p>
+</div>
+<div class="search-bar">
+<input class="form-input" placeholder="제목, 저자, 키워드 검색..." id="search-input" oninput="filterPapers()">
+<select class="form-select" id="field-filter" onchange="filterPapers()">
+<option value="">전체 분야</option>
+<option value="물리">물리·천문</option><option value="화학">화학</option>
+<option value="생명">생명과학</option><option value="수학">수학</option>
+<option value="정보">정보과학</option><option value="지구">지구과학</option>
+<option value="경제">경제</option><option value="경영">경영</option>
+<option value="사회">사회</option><option value="역사">역사</option>
+<option value="문학">문학</option><option value="심리">심리</option>
+</select>
+<select class="form-select" id="track-filter" onchange="filterPapers()">
+<option value="">전체 트랙</option>
+<option value="free">자유투고</option><option value="best">우수투고</option>
+</select>
+</div>
+<div id="all-papers"></div>
+</div>
 </div>
 
 <!-- SUBMIT -->
 <div id="page-submit" class="page">
-  <div class="submit-page">
-    <div class="submit-header">
-      <h2>논문 투고</h2>
-      <p>아래 양식을 작성하여 탐구 자료를 제출하세요.<br>제출 후 편집위원회 검토 후 게재됩니다.</p>
-    </div>
-    <div id="submit-login-msg" style="display:none;text-align:center;padding:36px;background:#fff;border:1px solid var(--border)">
-      <p style="font-size:14px;color:var(--muted);margin-bottom:16px">논문을 투고하려면 구글 로그인이 필요합니다.</p>
-      <button class="btn-google" onclick="loginWithGoogle()">
-        <svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
-        구글 로그인
-      </button>
-    </div>
-    <div id="submit-form">
-      <div style="margin-bottom:18px">
-        <div class="form-label">투고 트랙 선택 <span style="color:var(--red)">*</span></div>
-        <div class="track-selector">
-          <div class="track-card selected" id="track-free" onclick="selectTrack('free')">
-            <div class="track-icon">📝</div>
-            <div class="track-name">자유투고란</div>
-            <div class="track-desc">형식 제한 없이 자유롭게 투고</div>
-          </div>
-          <div class="track-card" id="track-best" onclick="selectTrack('best')">
-            <div class="track-icon">🏆</div>
-            <div class="track-name">우수투고란</div>
-            <div class="track-desc">편집위원회 심사 후 선별 게재</div>
-          </div>
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">논문 제목 <span>*</span></label>
-        <input class="form-input" placeholder="탐구 주제를 담은 제목" id="f-title">
-      </div>
-      <div class="form-row">
-        <div class="form-group">
-          <label class="form-label">저자(이름) <span>*</span></label>
-          <input class="form-input" placeholder="예: 김민준, 이서연" id="f-authors">
-        </div>
-        <div class="form-group">
-          <label class="form-label">학년·반 <span>*</span></label>
-          <input class="form-input" placeholder="예: 1학년 3반" id="f-class">
-        </div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">연구 분야 <span>*</span></label>
-        <select class="form-select" id="f-field">
-          <option value="">선택하세요</option>
-          <option>물리·천문</option><option>화학</option><option>생명과학</option>
-          <option>수학</option><option>정보과학</option><option>지구과학</option><option>융합·기타</option>
-        </select>
-      </div>
-      <div class="form-group">
-        <label class="form-label">초록 (Abstract) <span>*</span></label>
-        <textarea class="form-textarea" placeholder="연구 목적, 방법, 결과를 100자 이상 요약" id="f-abstract" style="height:100px"></textarea>
-      </div>
-      <div class="form-group">
-        <label class="form-label">키워드</label>
-        <input class="form-input" placeholder="쉼표로 구분 (예: 열역학, 엔트로피)" id="f-keywords">
-      </div>
-      <div class="form-group">
-        <label class="form-label">파일 첨부</label>
-        <div class="file-drop" onclick="document.getElementById('file-input').click()">
-          <div class="file-drop-text">
-            <strong>📎 파일 선택</strong>
-            PDF, HWP, DOCX · 최대 20MB
-          </div>
-        </div>
-        <input type="file" id="file-input" style="display:none" accept=".pdf,.hwp,.docx" onchange="updateFileName(this)">
-        <div id="file-name" style="font-size:12px;color:var(--teal);margin-top:5px"></div>
-      </div>
-      <div class="form-group">
-        <label class="form-label">지도 교사 (선택)</label>
-        <input class="form-input" placeholder="지도해주신 선생님 성함" id="f-teacher">
-      </div>
-      <button class="btn-full" onclick="submitPaper()">논문 제출하기 →</button>
-      <p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">제출된 자료는 편집위원회 검토를 거쳐 등록됩니다.</p>
-    </div>
-  </div>
+<div class="submit-page">
+<div class="submit-header">
+<h2>논문 투고</h2>
+<p>아래 양식을 작성하여 탐구 자료를 제출하세요.<br>제출 후 편집위원회 검토 후 게재됩니다.</p>
+</div>
+<div id="submit-login-msg" style="display:none;text-align:center;padding:36px;background:#fff;border:1px solid var(--border)">
+<p style="font-size:14px;color:var(--muted);margin-bottom:16px">논문을 투고하려면 구글 로그인이 필요합니다.</p>
+<button class="btn-google" onclick="loginWithGoogle()">
+<svg width="16" height="16" viewBox="0 0 24 24"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>
+구글 로그인
+</button>
+</div>
+<div id="submit-form">
+<div style="margin-bottom:18px">
+<div class="form-label">투고 트랙 선택 <span style="color:var(--red)">*</span></div>
+<div class="track-selector">
+<div class="track-card selected" id="track-free" onclick="selectTrack('free')">
+<div class="track-icon">📝</div>
+<div class="track-name">자유투고란</div>
+<div class="track-desc">형식 제한 없이 자유롭게 투고</div>
+</div>
+<div class="track-card" id="track-best" onclick="selectTrack('best')">
+<div class="track-icon">🏆</div>
+<div class="track-name">우수투고란</div>
+<div class="track-desc">편집위원회 심사 후 선별 게재</div>
+</div>
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">논문 제목 <span>*</span></label>
+<input class="form-input" placeholder="탐구 주제를 담은 제목" id="f-title">
+</div>
+<div class="form-row">
+<div class="form-group">
+<label class="form-label">저자(이름) <span>*</span></label>
+<input class="form-input" placeholder="예: 김민준, 이서연" id="f-authors">
+</div>
+<div class="form-group">
+<label class="form-label">학년·반 <span>*</span></label>
+<input class="form-input" placeholder="예: 1학년 3반" id="f-class">
+</div>
+</div>
+<div class="form-group">
+<label class="form-label">연구 분야 <span>*</span></label>
+<select class="form-select" id="f-field">
+<option value="">선택하세요</option>
+<optgroup label="이과">
+<option>물리·천문</option><option>화학</option><option>생명과학</option>
+<option>수학</option><option>정보과학</option><option>지구과학</option>
+</optgroup>
+<optgroup label="문과">
+<option>경제</option><option>경영</option><option>사회</option>
+<option>역사</option><option>문학</option><option>심리</option>
+</optgroup>
+<option>융합·기타</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">초록 (Abstract) <span>*</span></label>
+<textarea class="form-textarea" placeholder="연구 목적, 방법, 결과를 100자 이상 요약" id="f-abstract" style="height:100px"></textarea>
+</div>
+<div class="form-group">
+<label class="form-label">키워드</label>
+<input class="form-input" placeholder="쉼표로 구분 (예: 열역학, 엔트로피)" id="f-keywords">
+</div>
+<div class="form-group">
+<label class="form-label">파일 첨부</label>
+<div class="file-drop" onclick="document.getElementById('file-input').click()">
+<div class="file-drop-text">
+<strong>📎 파일 선택</strong>
+PDF, HWP, DOCX · 최대 20MB
+</div>
+</div>
+<input type="file" id="file-input" style="display:none" accept=".pdf,.hwp,.docx" onchange="updateFileName(this)">
+<div id="file-name" style="font-size:12px;color:var(--teal);margin-top:5px"></div>
+</div>
+<div class="form-group">
+<label class="form-label">지도 교사 (선택)</label>
+<input class="form-input" placeholder="지도해주신 선생님 성함" id="f-teacher">
+</div>
+<button class="btn-full" onclick="submitPaper()">논문 제출하기 →</button>
+<p style="font-size:11px;color:var(--muted);text-align:center;margin-top:10px">제출된 자료는 편집위원회 검토를 거쳐 등록됩니다.</p>
+</div>
+</div>
+</div>
+
+<!-- COMMUNITY -->
+<div id="page-community" class="page">
+<div class="community-page">
+<div class="community-header">
+<h2>커뮤니티</h2>
+<p>투고와 별개로, 학술회 활동에 대해 자유롭게 이야기 나눠보세요.</p>
+</div>
+<div id="community-write-box"></div>
+<div id="community-posts"></div>
+</div>
 </div>
 
 <!-- ABOUT -->
 <div id="page-about" class="page">
-  <div class="about-page">
-    <div class="about-hero">
-      <div class="about-hero-inner">
-        <h2>경포고 정기학술회란?</h2>
-        <p>경포고등학교 학생들의 자발적 탐구 문화를 장려하기 위해 만들어진 학술 기관입니다.<br>
-        매 학기 탐구 결과물을 수집하고, 심사를 거쳐 학술지 형태로 발간·아카이빙합니다.</p>
-      </div>
-    </div>
-    <div class="about-section">
-      <h3>투고 트랙 안내</h3>
-      <div class="track-info">
-        <div class="track-info-card">
-          <h4>📝 자유투고란</h4>
-          <p>형식 요건 없이 탐구 보고서, 소논문, 실험 일지 등을 자유롭게 제출할 수 있습니다.</p>
-        </div>
-        <div class="track-info-card" style="border-left:3px solid var(--teal)">
-          <h4>🏆 우수투고란</h4>
-          <p>독창성과 완성도가 높은 논문. 편집위원 심사를 거쳐 선별 게재됩니다.</p>
-        </div>
-      </div>
-    </div>
-    <div class="about-section">
-      <h3>2025학년도 일정</h3>
-      <div class="timeline">
-        <div class="tl-item"><div class="tl-date">3월</div><div class="tl-content"><strong>1학기 자유투고 모집 시작</strong>상시 접수</div></div>
-        <div class="tl-item"><div class="tl-date">5월</div><div class="tl-content"><strong>1학기 우수투고 마감</strong>편집위원회 심사</div></div>
-        <div class="tl-item"><div class="tl-date">7월</div><div class="tl-content"><strong>제1회 학술지 발간</strong>PDF 공개 및 인쇄본 배부</div></div>
-        <div class="tl-item"><div class="tl-date">9월</div><div class="tl-content"><strong>2학기 우수투고 모집 시작</strong></div></div>
-        <div class="tl-item"><div class="tl-date">12월</div><div class="tl-content"><strong>연말 학술 심포지엄</strong>우수논문 발표 및 시상</div></div>
-      </div>
-    </div>
-    <div class="about-section">
-      <h3>편집위원회</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
-        <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px">
-          <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px">총괄</div>
-          <div style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)">이원희</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">경포고등학교 정기학술회</div>
-        </div>
-        <div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px">
-          <div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px">총괄</div>
-          <div style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)">서형우</div>
-          <div style="font-size:12px;color:var(--muted);margin-top:2px">경포고등학교 정기학술회</div>
-        </div>
-      </div>
-    </div>
-    <div class="about-section">
-      <h3>생기부 활용 안내</h3>
-      <p>경포고 정기학술회에 논문을 게재한 경우, 학교생활기록부 세부능력 및 특기사항(세특)에 기재할 수 있습니다. 게재 확인서 발급이 필요한 경우 총괄 이원희·서형우에게 문의하세요.</p>
-    </div>
-  </div>
+<div class="about-page">
+<div class="about-hero">
+<div class="about-hero-inner">
+<h2>경포고 정기학술회란?</h2>
+<p>경포고등학교 학생들의 자발적 탐구 문화를 장려하기 위해 만들어진 학술 기관입니다.<br>
+매 학기 탐구 결과물을 수집하고, 심사를 거쳐 학술지 형태로 발간·아카이빙합니다.</p>
+</div>
+</div>
+<div class="about-section">
+<h3>투고 트랙 안내</h3>
+<div class="track-info">
+<div class="track-info-card">
+<h4>📝 자유투고란</h4>
+<p>형식 요건 없이 탐구 보고서, 소논문, 실험 일지 등을 자유롭게 제출할 수 있습니다.</p>
+</div>
+<div class="track-info-card" style="border-left:3px solid var(--teal)">
+<h4>🏆 우수투고란</h4>
+<p>독창성과 완성도가 높은 논문. 편집위원 심사를 거쳐 선별 게재됩니다. 자유투고란에 올라온 논문 중 편집위원회가 우수하다고 판단하면 우수투고란으로 이전되기도 합니다.</p>
+</div>
+</div>
+</div>
+<div class="about-section">
+<h3>2025학년도 일정</h3>
+<div class="timeline">
+<div class="tl-item"><div class="tl-date">3월</div><div class="tl-content"><strong>1학기 자유투고 모집 시작</strong>상시 접수</div></div>
+<div class="tl-item"><div class="tl-date">5월</div><div class="tl-content"><strong>1학기 우수투고 마감</strong>편집위원회 심사</div></div>
+<div class="tl-item"><div class="tl-date">7월</div><div class="tl-content"><strong>제1회 학술지 발간</strong>PDF 공개 및 인쇄본 배부</div></div>
+<div class="tl-item"><div class="tl-date">9월</div><div class="tl-content"><strong>2학기 우수투고 모집 시작</strong></div></div>
+<div class="tl-item"><div class="tl-date">12월</div><div class="tl-content"><strong>연말 학술 심포지엄</strong>우수논문 발표 및 시상</div></div>
+</div>
+</div>
+<div class="about-section">
+<h3>편집위원회</h3>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px">
+<div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px">
+<div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px">총괄</div>
+<div style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)">이원희</div>
+<div style="font-size:12px;color:var(--muted);margin-top:2px">경포고등학교 정기학술회</div>
+</div>
+<div style="background:#fff;border:1px solid var(--border);border-top:3px solid var(--gold);padding:14px 16px">
+<div style="font-size:10px;font-weight:700;color:var(--gold);margin-bottom:5px">총괄</div>
+<div style="font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)">서형우</div>
+<div style="font-size:12px;color:var(--muted);margin-top:2px">경포고등학교 정기학술회</div>
+</div>
+</div>
+</div>
+<div class="about-section">
+<h3>생기부 활용 안내</h3>
+<p>경포고 정기학술회에 논문을 게재한 경우, 학교생활기록부 세부능력 및 특기사항(세특)에 기재할 수 있습니다. 게재 확인서 발급이 필요한 경우 총괄 이원희·서형우에게 문의하세요.</p>
+</div>
+</div>
 </div>
 
 <!-- MYPAGE -->
 <div id="page-mypage" class="page">
-  <div class="mypage">
-    <div class="mypage-header" id="mypage-header"></div>
-    <h3 style="font-family:'Noto Serif KR',serif;font-size:16px;color:var(--navy);margin-bottom:16px;border-bottom:2px solid var(--navy);padding-bottom:10px">내가 투고한 논문</h3>
-    <div id="my-papers"></div>
-  </div>
+<div class="mypage">
+<div class="mypage-header" id="mypage-header"></div>
+<h3 style="font-family:'Noto Serif KR',serif;font-size:16px;color:var(--navy);margin-bottom:16px;border-bottom:2px solid var(--navy);padding-bottom:10px">내가 투고한 논문</h3>
+<div id="my-papers"></div>
+</div>
 </div>
 
-<!-- MODAL -->
+<!-- PAPER MODAL -->
 <div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
-  <div class="modal">
-    <div class="modal-header">
-      <h3 id="modal-title"></h3>
-      <p id="modal-meta"></p>
-      <button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
-    </div>
-    <div class="modal-body">
-      <div class="modal-tags" id="modal-tags"></div>
-      <h4>초록</h4>
-      <p id="modal-abstract"></p>
-      <h4>키워드</h4>
-      <p id="modal-keywords" style="color:var(--muted)"></p>
-    </div>
-    <div class="modal-actions">
-      <button class="btn-heart-big" id="modal-heart-btn" onclick="toggleHeart()">❤️ <span id="modal-heart-count">0</span></button>
-      <span style="font-size:12px;color:var(--muted)" id="modal-admin-actions"></span>
-    </div>
-    <div class="comments-section">
-      <div class="comments-title">COMMENTS</div>
-      <div id="comments-list"></div>
-      <div id="comment-form-wrap">
-        <div class="comment-form">
-          <input class="form-input" id="comment-input" placeholder="댓글을 입력하세요..." onkeydown="if(event.key==='Enter')addComment()">
-          <button class="btn-comment" onclick="addComment()">등록</button>
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="modal">
+<div class="modal-header">
+<h3 id="modal-title"></h3>
+<p id="modal-meta"></p>
+<button class="modal-close" onclick="document.getElementById('modal').classList.remove('open')">✕</button>
+</div>
+<div class="modal-body">
+<div class="modal-tags" id="modal-tags"></div>
+<h4>초록</h4>
+<p id="modal-abstract"></p>
+<h4>키워드</h4>
+<p id="modal-keywords" style="color:var(--muted)"></p>
+</div>
+<div class="modal-actions">
+<button class="btn-heart-big" id="modal-heart-btn" onclick="toggleHeart()">❤️ <span id="modal-heart-count">0</span></button>
+<span style="font-size:12px;color:var(--muted)" id="modal-admin-actions"></span>
+</div>
+<div class="comments-section">
+<div class="comments-title">COMMENTS</div>
+<div id="comments-list"></div>
+<div id="comment-form-wrap">
+<div class="comment-form">
+<input class="form-input" id="comment-input" placeholder="댓글을 입력하세요..." onkeydown="if(event.key==='Enter')addComment()">
+<button class="btn-comment" onclick="addComment()">등록</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<!-- COMMUNITY MODAL -->
+<div class="modal-overlay" id="community-modal" onclick="closeCommunityModalOutside(event)">
+<div class="modal">
+<div class="modal-header">
+<h3 id="cm-title"></h3>
+<p id="cm-meta"></p>
+<button class="modal-close" onclick="document.getElementById('community-modal').classList.remove('open')">✕</button>
+</div>
+<div class="modal-body">
+<p id="cm-content" style="white-space:pre-wrap"></p>
+</div>
+<div class="modal-actions" id="cm-admin-actions" style="justify-content:flex-end"></div>
+<div class="comments-section">
+<div class="comments-title">COMMENTS</div>
+<div id="cm-comments-list"></div>
+<div id="cm-comment-form-wrap"></div>
+</div>
+</div>
 </div>
 
 <div class="toast" id="toast"></div>
+
 <footer style="background:var(--navy);margin-top:60px;padding:24px 40px;text-align:center">
-  <div style="font-family:'Noto Serif KR',serif;color:var(--gold);font-size:13px;font-weight:600;margin-bottom:4px">경포고등학교 정기학술회</div>
-  <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:3px">총괄 · 이원희 &nbsp;|&nbsp; 서형우</div>
-  <div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2025 Gyeongpo High School Academic Journal</div>
+<div style="font-family:'Noto Serif KR',serif;color:var(--gold);font-size:13px;font-weight:600;margin-bottom:4px">경포고등학교 정기학술회</div>
+<div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:3px">총괄 · 이원희 &nbsp;|&nbsp; 서형우</div>
+<div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2025 Gyeongpo High School Academic Journal</div>
 </footer>
 
 <script type="module">
@@ -471,7 +541,7 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/fireba
 import { getAuth, GoogleAuthProvider, signInWithPopup, signOut, onAuthStateChanged }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 import { getFirestore, collection, addDoc, getDocs, getDoc, doc, updateDoc, deleteDoc,
-         orderBy, query, serverTimestamp, arrayUnion, arrayRemove, increment }
+  orderBy, query, serverTimestamp, arrayUnion, arrayRemove, increment }
   from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const ADMIN_EMAIL = 'a01064587993@gmail.com';
@@ -492,11 +562,16 @@ const provider = new GoogleAuthProvider();
 
 let currentUser = null;
 let papers = [];
+let posts = [];
 let selectedTrack = 'free';
 let currentModalPaperId = null;
+let currentModalPostId = null;
 
 // ── FIELD MAP ──
-const fieldClass = {물리:'ft-physics',화학:'ft-chem',생명:'ft-bio',수학:'ft-math',정보:'ft-cs',지구:'ft-earth',융합:'ft-cs'};
+const fieldClass = {
+  물리:'ft-physics',화학:'ft-chem',생명:'ft-bio',수학:'ft-math',정보:'ft-cs',지구:'ft-earth',융합:'ft-cs',
+  경제:'ft-econ',경영:'ft-biz',사회:'ft-social',역사:'ft-history',문학:'ft-lit',심리:'ft-psych'
+};
 function getFC(f){ for(const k in fieldClass){ if(f&&f.startsWith(k)) return fieldClass[k]; } return 'ft-cs'; }
 function isAdmin(user){ return user && user.email === ADMIN_EMAIL; }
 
@@ -511,6 +586,7 @@ onAuthStateChanged(auth, user => {
   currentUser = user;
   updateNavAuth(user);
   updateSubmitForm(user);
+  updateCommunityWriteBox();
   if(document.getElementById('page-mypage').classList.contains('active')) renderMyPage();
 });
 
@@ -572,8 +648,12 @@ function renderCard(p, showAdminBtns=false){
     ? '<span style="font-size:10px;color:var(--teal);font-weight:700">▲ 우수투고</span>'
     : '<span style="font-size:10px;color:var(--muted)">자유투고</span>';
   const hearts = p.hearts||0;
+  const promoteBtn = p.track==='free'
+    ? `<button class="btn-admin btn-promote" onclick="event.stopPropagation();promoteTrack('${p.id}','free')">▲ 우수투고 이전</button>`
+    : `<button class="btn-admin btn-promote" onclick="event.stopPropagation();promoteTrack('${p.id}','best')">▼ 자유투고 이동</button>`;
   const adminBtns = showAdminBtns ? `
     <div class="admin-actions">
+      ${promoteBtn}
       <button class="btn-admin btn-feature" onclick="event.stopPropagation();toggleFeatured('${p.id}',${!!p.featured})">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>
       <button class="btn-admin btn-delete" onclick="event.stopPropagation();deletePaper('${p.id}')">🗑 삭제</button>
     </div>` : '';
@@ -615,7 +695,10 @@ function renderAll(){
   el('badge-free').textContent = free.length;
   el('badge-best').textContent = best.length;
 
-  const fields = {물리:'cnt-physics',화학:'cnt-chem',생명:'cnt-bio',수학:'cnt-math',정보:'cnt-cs',지구:'cnt-earth'};
+  const fields = {
+    물리:'cnt-physics',화학:'cnt-chem',생명:'cnt-bio',수학:'cnt-math',정보:'cnt-cs',지구:'cnt-earth',
+    경제:'cnt-econ',경영:'cnt-biz',사회:'cnt-social',역사:'cnt-history',문학:'cnt-lit',심리:'cnt-psych'
+  };
   for(const [k,id] of Object.entries(fields))
     el(id).textContent = papers.filter(p=>(p.field||'').startsWith(k)).length;
 
@@ -678,20 +761,23 @@ window.showPage = (id, btn) => {
   if(btn) btn.classList.add('active');
   window.scrollTo(0,0);
   if(id==='mypage') renderMyPage();
+  if(id==='community'){ updateCommunityWriteBox(); loadPosts(); }
 };
+
 window.showTab = (id, btn) => {
   document.getElementById('tab-free').style.display = id==='free'?'':'none';
   document.getElementById('tab-best').style.display = id==='best'?'':'none';
   document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
   btn.classList.add('active');
 };
+
 window.goFieldFilter = field => {
   window.showPage('papers', document.querySelector('.nav-links button:nth-child(2)'));
   document.getElementById('field-filter').value = field;
   window.filterPapers();
 };
 
-// ── MODAL ──
+// ── MODAL (papers) ──
 window.openModal = async id => {
   const p = papers.find(x=>x.id===id);
   if(!p) return;
@@ -712,20 +798,18 @@ window.openModal = async id => {
   heartBtn.className = 'btn-heart-big'+(liked?' liked':'');
   document.getElementById('modal-heart-count').textContent = hearts;
 
-  // admin actions in modal
   const adminEl = document.getElementById('modal-admin-actions');
   if(isAdmin(currentUser)){
-    adminEl.innerHTML = `<button class="btn-admin btn-feature" onclick="toggleFeatured('${id}',${!!p.featured})" style="margin-right:6px">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>
-    <button class="btn-admin btn-delete" onclick="deletePaper('${id}')">🗑 삭제</button>`;
+    const promoteLabel = p.track==='free' ? '▲ 우수투고 이전' : '▼ 자유투고 이동';
+    adminEl.innerHTML = `<button class="btn-admin btn-promote" onclick="promoteTrack('${id}','${p.track}')" style="margin-right:6px">${promoteLabel}</button>
+      <button class="btn-admin btn-feature" onclick="toggleFeatured('${id}',${!!p.featured})" style="margin-right:6px">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>
+      <button class="btn-admin btn-delete" onclick="deletePaper('${id}')">🗑 삭제</button>`;
   } else { adminEl.innerHTML=''; }
 
-  // load comments
   await loadComments(id);
   document.getElementById('modal').classList.add('open');
 
-  // show/hide comment form
   const cfw = document.getElementById('comment-form-wrap');
-  cfw.style.display = currentUser ? '' : '<div style="font-size:12px;color:var(--muted);padding:8px 0">댓글을 달려면 로그인하세요.</div>';
   if(!currentUser) cfw.innerHTML = '<p style="font-size:12px;color:var(--muted);margin-top:10px">댓글을 달려면 로그인하세요.</p>';
   else cfw.innerHTML = `<div class="comment-form"><input class="form-input" id="comment-input" placeholder="댓글을 입력하세요..." onkeydown="if(event.key==='Enter')addComment()"><button class="btn-comment" onclick="addComment()">등록</button></div>`;
 };
@@ -775,7 +859,7 @@ window.quickHeart = async id => {
   renderAll();
 };
 
-// ── COMMENTS ──
+// ── COMMENTS (papers) ──
 async function loadComments(paperId){
   const list = document.getElementById('comments-list');
   list.innerHTML = '<div style="font-size:12px;color:var(--muted)">댓글 불러오는 중...</div>';
@@ -823,7 +907,7 @@ window.deleteComment = async (paperId, commentId) => {
   } catch(e){ showToast('삭제에 실패했습니다.'); }
 };
 
-// ── ADMIN ──
+// ── ADMIN (papers) ──
 window.deletePaper = async id => {
   if(!isAdmin(currentUser)){ showToast('관리자만 삭제할 수 있습니다.'); return; }
   if(!confirm('이 논문을 삭제할까요?')) return;
@@ -848,12 +932,26 @@ window.toggleFeatured = async (id, current) => {
   } catch(e){ showToast('변경에 실패했습니다.'); }
 };
 
+window.promoteTrack = async (id, currentTrack) => {
+  if(!isAdmin(currentUser)){ showToast('관리자만 가능합니다.'); return; }
+  const newTrack = currentTrack==='free' ? 'best' : 'free';
+  try {
+    await updateDoc(doc(db,'papers',id),{track:newTrack});
+    const p = papers.find(x=>x.id===id);
+    if(p) p.track = newTrack;
+    renderAll();
+    document.getElementById('modal').classList.remove('open');
+    showToast(newTrack==='best' ? '우수투고란으로 이전되었습니다.' : '자유투고란으로 이동되었습니다.');
+  } catch(e){ showToast('변경에 실패했습니다.'); }
+};
+
 // ── SUBMIT ──
 window.selectTrack = val => {
   selectedTrack = val;
   document.getElementById('track-free').classList.toggle('selected', val==='free');
   document.getElementById('track-best').classList.toggle('selected', val==='best');
 };
+
 window.updateFileName = input => {
   if(input.files[0]) document.getElementById('file-name').textContent = '✓ '+input.files[0].name;
 };
@@ -865,8 +963,10 @@ window.submitPaper = async () => {
         abstract=g('f-abstract'), cls=g('f-class');
   if(!title||!authors||!field||!abstract||!cls){ alert('필수 항목(*)을 모두 입력해주세요.'); return; }
   if(abstract.length<100){ alert('초록은 100자 이상 작성해주세요.'); return; }
+
   const btn = document.querySelector('.btn-full');
   btn.textContent='제출 중...'; btn.disabled=true;
+
   try {
     await addDoc(collection(db,'papers'),{
       title, authors, field, abstract,
@@ -884,6 +984,154 @@ window.submitPaper = async () => {
     await loadPapers();
   } catch(e){ alert('제출에 실패했습니다. 다시 시도해주세요.'); console.error(e); }
   finally { btn.textContent='논문 제출하기 →'; btn.disabled=false; }
+};
+
+// ── COMMUNITY ──
+async function loadPosts(){
+  const el = document.getElementById('community-posts');
+  el.innerHTML = '<div class="loading-spinner">불러오는 중...</div>';
+  try {
+    const q = query(collection(db,'posts'), orderBy('createdAt','desc'));
+    const snap = await getDocs(q);
+    posts = snap.docs.map(d=>({id:d.id,...d.data()}));
+    renderPosts();
+  } catch(e){
+    console.error(e);
+    el.innerHTML = '<div class="loading-spinner">불러오지 못했습니다. 새로고침 해주세요.</div>';
+  }
+}
+
+function renderPosts(){
+  const el = document.getElementById('community-posts');
+  el.innerHTML = posts.length ? posts.map(p=>`
+    <div class="post-card" onclick="openCommunityModal('${p.id}')">
+      <div class="post-title">${p.title||''}</div>
+      <div class="post-meta">${p.authorName||''} · ${p.createdAt?.toDate?p.createdAt.toDate().toLocaleDateString('ko-KR'):''}</div>
+      <div class="post-preview">${(p.content||'').replace(/</g,'&lt;')}</div>
+      <div class="post-footer"><span>💬 댓글 ${p.commentCount||0}개</span></div>
+    </div>`).join('') : `<div class="empty-msg"><div class="empty-icon">💬</div><div class="empty-title">아직 게시글이 없습니다</div><div class="empty-sub">가장 먼저 이야기를 나눠보세요.</div></div>`;
+}
+
+function updateCommunityWriteBox(){
+  const box = document.getElementById('community-write-box');
+  if(!box) return;
+  if(currentUser){
+    box.innerHTML = `<div class="community-write">
+      <input class="form-input" id="cw-title" placeholder="제목">
+      <textarea class="form-textarea" id="cw-content" placeholder="내용을 입력하세요..."></textarea>
+      <button class="btn-comment" onclick="submitPost()">글 등록</button>
+    </div>`;
+  } else {
+    box.innerHTML = `<div class="community-write" style="text-align:center;color:var(--muted);font-size:13px">글을 작성하려면 로그인이 필요합니다.</div>`;
+  }
+}
+
+window.submitPost = async () => {
+  if(!currentUser){ showToast('로그인이 필요합니다.'); return; }
+  const titleEl = document.getElementById('cw-title');
+  const contentEl = document.getElementById('cw-content');
+  const title = titleEl.value.trim();
+  const content = contentEl.value.trim();
+  if(!title||!content){ alert('제목과 내용을 입력해주세요.'); return; }
+  try {
+    await addDoc(collection(db,'posts'),{
+      title, content,
+      authorName:currentUser.displayName||currentUser.email,
+      authorUid:currentUser.uid, authorEmail:currentUser.email,
+      createdAt:serverTimestamp(), commentCount:0
+    });
+    titleEl.value=''; contentEl.value='';
+    showToast('게시글이 등록되었습니다.');
+    await loadPosts();
+  } catch(e){ alert('등록에 실패했습니다. 다시 시도해주세요.'); console.error(e); }
+};
+
+window.openCommunityModal = async id => {
+  const p = posts.find(x=>x.id===id);
+  if(!p) return;
+  currentModalPostId = id;
+  document.getElementById('cm-title').textContent = p.title||'';
+  document.getElementById('cm-meta').textContent = `${p.authorName||''} · ${p.createdAt?.toDate?p.createdAt.toDate().toLocaleDateString('ko-KR'):''}`;
+  document.getElementById('cm-content').textContent = p.content||'';
+
+  const adminEl = document.getElementById('cm-admin-actions');
+  if(isAdmin(currentUser) || (currentUser && currentUser.uid===p.authorUid)){
+    adminEl.innerHTML = `<button class="btn-admin btn-delete" onclick="deletePost('${id}')">🗑 삭제</button>`;
+  } else { adminEl.innerHTML=''; }
+
+  await loadCommunityComments(id);
+  document.getElementById('community-modal').classList.add('open');
+
+  const cfw = document.getElementById('cm-comment-form-wrap');
+  if(!currentUser) cfw.innerHTML = '<p style="font-size:12px;color:var(--muted);margin-top:10px">댓글을 달려면 로그인하세요.</p>';
+  else cfw.innerHTML = `<div class="comment-form"><input class="form-input" id="cm-comment-input" placeholder="댓글을 입력하세요..." onkeydown="if(event.key==='Enter')addCommunityComment()"><button class="btn-comment" onclick="addCommunityComment()">등록</button></div>`;
+};
+
+window.closeCommunityModalOutside = e => {
+  if(e.target===document.getElementById('community-modal')) document.getElementById('community-modal').classList.remove('open');
+};
+
+async function loadCommunityComments(postId){
+  const list = document.getElementById('cm-comments-list');
+  list.innerHTML = '<div style="font-size:12px;color:var(--muted)">댓글 불러오는 중...</div>';
+  try {
+    const q = query(collection(db,'posts',postId,'comments'),orderBy('createdAt','asc'));
+    const snap = await getDocs(q);
+    if(snap.empty){ list.innerHTML='<div style="font-size:12px;color:var(--muted);padding:8px 0">아직 댓글이 없습니다.</div>'; return; }
+    list.innerHTML = snap.docs.map(d=>{
+      const c = d.data();
+      const dateStr = c.createdAt?.toDate ? c.createdAt.toDate().toLocaleDateString('ko-KR') : '';
+      const canDelete = currentUser&&(currentUser.uid===c.authorUid||isAdmin(currentUser));
+      return `<div class="comment-item">
+        <div class="comment-author">${c.authorName||'익명'}
+          ${canDelete?`<button class="btn-comment-delete" onclick="deleteCommunityComment('${postId}','${d.id}')">삭제</button>`:''}
+        </div>
+        <div class="comment-text">${c.text||''}</div>
+        <div class="comment-date">${dateStr}</div>
+      </div>`;
+    }).join('');
+  } catch(e){ list.innerHTML='<div style="font-size:12px;color:var(--muted)">댓글을 불러오지 못했습니다.</div>'; }
+}
+
+window.addCommunityComment = async () => {
+  if(!currentUser){ showToast('로그인이 필요합니다.'); return; }
+  const input = document.getElementById('cm-comment-input');
+  const text = input.value.trim();
+  if(!text) return;
+  input.value = '';
+  try {
+    await addDoc(collection(db,'posts',currentModalPostId,'comments'),{
+      text, authorName: currentUser.displayName||currentUser.email,
+      authorUid: currentUser.uid, createdAt: serverTimestamp()
+    });
+    await updateDoc(doc(db,'posts',currentModalPostId),{commentCount:increment(1)});
+    const p = posts.find(x=>x.id===currentModalPostId);
+    if(p) p.commentCount = (p.commentCount||0)+1;
+    await loadCommunityComments(currentModalPostId);
+  } catch(e){ showToast('댓글 등록에 실패했습니다.'); }
+};
+
+window.deleteCommunityComment = async (postId, commentId) => {
+  if(!confirm('댓글을 삭제할까요?')) return;
+  try {
+    await deleteDoc(doc(db,'posts',postId,'comments',commentId));
+    await updateDoc(doc(db,'posts',postId),{commentCount:increment(-1)});
+    const p = posts.find(x=>x.id===postId);
+    if(p) p.commentCount = Math.max(0,(p.commentCount||1)-1);
+    await loadCommunityComments(postId);
+    showToast('댓글이 삭제되었습니다.');
+  } catch(e){ showToast('삭제에 실패했습니다.'); }
+};
+
+window.deletePost = async id => {
+  if(!confirm('이 게시글을 삭제할까요?')) return;
+  try {
+    await deleteDoc(doc(db,'posts',id));
+    posts = posts.filter(p=>p.id!==id);
+    renderPosts();
+    document.getElementById('community-modal').classList.remove('open');
+    showToast('게시글이 삭제되었습니다.');
+  } catch(e){ showToast('삭제에 실패했습니다.'); }
 };
 
 // ── TOAST ──
