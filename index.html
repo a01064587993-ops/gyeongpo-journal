@@ -503,6 +503,54 @@ nav{padding:0 14px}.nav-links{gap:10px}
 </div>
 </div>
 
+<!-- EDIT PAPER MODAL -->
+<div class="modal-overlay" id="edit-modal" onclick="closeEditModalOutside(event)">
+<div class="modal">
+<div class="modal-header">
+<h3>논문 수정</h3>
+<p>내용을 수정하고 저장하세요.</p>
+<button class="modal-close" onclick="document.getElementById('edit-modal').classList.remove('open')">✕</button>
+</div>
+<div class="modal-body">
+<div class="form-group">
+<label class="form-label">논문 제목 <span>*</span></label>
+<input class="form-input" id="e-title">
+</div>
+<div class="form-group">
+<label class="form-label">저자</label>
+<input class="form-input" id="e-authors">
+</div>
+<div class="form-group">
+<label class="form-label">연구 분야</label>
+<select class="form-select" id="e-field">
+<optgroup label="이과">
+<option>물리·천문</option><option>화학</option><option>생명과학</option>
+<option>수학</option><option>정보과학</option><option>지구과학</option>
+</optgroup>
+<optgroup label="문과">
+<option>경제</option><option>경영</option><option>사회</option>
+<option>역사</option><option>문학</option><option>심리</option>
+</optgroup>
+<option>융합·기타</option>
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">초록</label>
+<textarea class="form-textarea" id="e-abstract" style="height:100px"></textarea>
+</div>
+<div class="form-group">
+<label class="form-label">키워드</label>
+<input class="form-input" id="e-keywords">
+</div>
+<div class="form-group">
+<label class="form-label">파일 링크 (Google Drive)</label>
+<input class="form-input" id="e-drivelink" placeholder="https://drive.google.com/...">
+</div>
+<button class="btn-full" onclick="saveEditPaper()">수정 저장하기 →</button>
+</div>
+</div>
+</div>
+
 <!-- COMMUNITY MODAL -->
 <div class="modal-overlay" id="community-modal" onclick="closeCommunityModalOutside(event)">
 <div class="modal">
@@ -787,7 +835,7 @@ window.openModal = async id => {
   document.getElementById('modal-abstract').textContent = p.abstract||'';
   document.getElementById('modal-keywords').textContent = p.keywords||'';
 
-  const link = p.driveLink||p.fileLink||p.paperLink||p.googleDriveLink||p.fileUrl||p.file_link||p.drive_link||p.link||'';
+  const link = p.filelink||p.driveLink||p.fileLink||p.paperLink||p.googleDriveLink||p.fileUrl||p.file_link||p.drive_link||p.link||'';
   const fileEl = document.getElementById('modal-file-section');
   if(link){
     fileEl.innerHTML = `<h4>논문 파일</h4><p><a href="${link}" target="_blank" rel="noopener" style="color:var(--navy3);font-weight:600">📄 논문 전문 보기 (Google Drive)</a></p>`;
@@ -802,12 +850,20 @@ window.openModal = async id => {
   document.getElementById('modal-heart-count').textContent = hearts;
 
   const adminEl = document.getElementById('modal-admin-actions');
+  const isOwner = currentUser && currentUser.uid === p.submitterUid;
+  let actionsHtml = '';
   if(isAdmin(currentUser)){
     const promoteLabel = p.track==='free' ? '▲ 우수투고 이전' : '▼ 자유투고 이동';
-    adminEl.innerHTML = `<button class="btn-admin btn-promote" onclick="promoteTrack('${id}','${p.track}')" style="margin-right:6px">${promoteLabel}</button>
-      <button class="btn-admin btn-feature" onclick="toggleFeatured('${id}',${!!p.featured})" style="margin-right:6px">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>
-      <button class="btn-admin btn-delete" onclick="deletePaper('${id}')">🗑 삭제</button>`;
-  } else { adminEl.innerHTML=''; }
+    actionsHtml += `<button class="btn-admin btn-promote" onclick="promoteTrack('${id}','${p.track}')" style="margin-right:6px">${promoteLabel}</button>
+      <button class="btn-admin btn-feature" onclick="toggleFeatured('${id}',${!!p.featured})" style="margin-right:6px">${p.featured?'⭐ 우수해제':'⭐ 우수지정'}</button>`;
+  }
+  if(isAdmin(currentUser) || isOwner){
+    actionsHtml += `<button class="btn-admin" style="background:#eef3ff;color:#2a4a8a;margin-right:6px" onclick="openEditModal('${id}')">✏️ 수정</button>`;
+  }
+  if(isAdmin(currentUser)){
+    actionsHtml += `<button class="btn-admin btn-delete" onclick="deletePaper('${id}')">🗑 삭제</button>`;
+  }
+  adminEl.innerHTML = actionsHtml;
 
   await loadComments(id);
   document.getElementById('modal').classList.add('open');
@@ -948,6 +1004,49 @@ window.promoteTrack = async (id, currentTrack) => {
   } catch(e){ showToast('변경에 실패했습니다.'); }
 };
 
+// ── EDIT PAPER ──
+window.openEditModal = id => {
+  const p = papers.find(x=>x.id===id);
+  if(!p) return;
+  const isOwner = currentUser && currentUser.uid === p.submitterUid;
+  if(!isAdmin(currentUser) && !isOwner){ showToast('수정 권한이 없습니다.'); return; }
+  currentModalPaperId = id;
+  document.getElementById('e-title').value = p.title||'';
+  document.getElementById('e-authors').value = p.authors||'';
+  document.getElementById('e-field').value = p.field||'';
+  document.getElementById('e-abstract').value = p.abstract||'';
+  document.getElementById('e-keywords').value = p.keywords||'';
+  document.getElementById('e-drivelink').value = p.filelink||p.driveLink||p.fileLink||p.paperLink||p.googleDriveLink||p.fileUrl||p.link||'';
+  document.getElementById('modal').classList.remove('open');
+  document.getElementById('edit-modal').classList.add('open');
+};
+
+window.closeEditModalOutside = e => {
+  if(e.target===document.getElementById('edit-modal')) document.getElementById('edit-modal').classList.remove('open');
+};
+
+window.saveEditPaper = async () => {
+  const id = currentModalPaperId;
+  const p = papers.find(x=>x.id===id);
+  if(!p) return;
+  const isOwner = currentUser && currentUser.uid === p.submitterUid;
+  if(!isAdmin(currentUser) && !isOwner){ showToast('수정 권한이 없습니다.'); return; }
+  const g = eid => document.getElementById(eid).value.trim();
+  const title = g('e-title');
+  if(!title){ alert('논문 제목을 입력해주세요.'); return; }
+  const updates = {
+    title, authors:g('e-authors'), field:document.getElementById('e-field').value,
+    abstract:g('e-abstract'), keywords:g('e-keywords'), driveLink:g('e-drivelink'), filelink:g('e-drivelink')
+  };
+  try {
+    await updateDoc(doc(db,'papers',id), updates);
+    Object.assign(p, updates);
+    renderAll();
+    document.getElementById('edit-modal').classList.remove('open');
+    showToast('논문이 수정되었습니다.');
+  } catch(e){ showToast('수정에 실패했습니다.'); }
+};
+
 // ── SUBMIT ──
 window.selectTrack = val => {
   selectedTrack = val;
@@ -970,7 +1069,7 @@ window.submitPaper = async () => {
     await addDoc(collection(db,'papers'),{
       title, authors, field, abstract,
       keywords:g('f-keywords'), teacher:g('f-teacher'),
-      driveLink:g('f-drivelink'),
+      driveLink:g('f-drivelink'), filelink:g('f-drivelink'),
       track:selectedTrack, year:new Date().getFullYear(),
       submitterName:currentUser.displayName||currentUser.email,
       submitterUid:currentUser.uid, submitterEmail:currentUser.email,
