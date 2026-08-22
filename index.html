@@ -380,15 +380,9 @@ nav{padding:0 14px}.nav-links{gap:10px}
 <input class="form-input" placeholder="쉼표로 구분 (예: 열역학, 엔트로피)" id="f-keywords">
 </div>
 <div class="form-group">
-<label class="form-label">파일 첨부</label>
-<div class="file-drop" onclick="document.getElementById('file-input').click()">
-<div class="file-drop-text">
-<strong>📎 파일 선택</strong>
-PDF, HWP, DOCX · 최대 20MB
-</div>
-</div>
-<input type="file" id="file-input" style="display:none" accept=".pdf,.hwp,.docx" onchange="updateFileName(this)">
-<div id="file-name" style="font-size:12px;color:var(--teal);margin-top:5px"></div>
+<label class="form-label">파일 링크 (Google Drive)</label>
+<input class="form-input" placeholder="https://drive.google.com/..." id="f-drivelink">
+<p style="font-size:11px;color:var(--muted);margin-top:5px;line-height:1.6">📌 구글 드라이브에 PDF 업로드 → 우클릭 → 공유 → <strong>링크가 있는 모든 사용자</strong> 설정 후 링크 복사</p>
 </div>
 <div class="form-group">
 <label class="form-label">지도 교사 (선택)</label>
@@ -490,6 +484,7 @@ PDF, HWP, DOCX · 최대 20MB
 <p id="modal-abstract"></p>
 <h4>키워드</h4>
 <p id="modal-keywords" style="color:var(--muted)"></p>
+<div id="modal-file-section"></div>
 </div>
 <div class="modal-actions">
 <button class="btn-heart-big" id="modal-heart-btn" onclick="toggleHeart()">❤️ <span id="modal-heart-count">0</span></button>
@@ -792,6 +787,14 @@ window.openModal = async id => {
   document.getElementById('modal-abstract').textContent = p.abstract||'';
   document.getElementById('modal-keywords').textContent = p.keywords||'';
 
+  const link = p.driveLink||p.fileLink||p.paperLink||p.googleDriveLink||p.fileUrl||p.file_link||p.drive_link||p.link||'';
+  const fileEl = document.getElementById('modal-file-section');
+  if(link){
+    fileEl.innerHTML = `<h4>논문 파일</h4><p><a href="${link}" target="_blank" rel="noopener" style="color:var(--navy3);font-weight:600">📄 논문 전문 보기 (Google Drive)</a></p>`;
+  } else {
+    fileEl.innerHTML = '';
+  }
+
   const hearts = p.hearts||0;
   const liked = currentUser&&(p.likedBy||[]).includes(currentUser.uid);
   const heartBtn = document.getElementById('modal-heart-btn');
@@ -952,10 +955,6 @@ window.selectTrack = val => {
   document.getElementById('track-best').classList.toggle('selected', val==='best');
 };
 
-window.updateFileName = input => {
-  if(input.files[0]) document.getElementById('file-name').textContent = '✓ '+input.files[0].name;
-};
-
 window.submitPaper = async () => {
   if(!currentUser){ showToast('로그인이 필요합니다.'); return; }
   const g = id => document.getElementById(id).value.trim();
@@ -971,15 +970,15 @@ window.submitPaper = async () => {
     await addDoc(collection(db,'papers'),{
       title, authors, field, abstract,
       keywords:g('f-keywords'), teacher:g('f-teacher'),
+      driveLink:g('f-drivelink'),
       track:selectedTrack, year:new Date().getFullYear(),
       submitterName:currentUser.displayName||currentUser.email,
       submitterUid:currentUser.uid, submitterEmail:currentUser.email,
       createdAt:serverTimestamp(), featured:false, hearts:0, likedBy:[]
     });
     showToast('✅ 논문이 성공적으로 제출되었습니다!');
-    ['f-title','f-authors','f-class','f-abstract','f-keywords','f-teacher'].forEach(id=>{document.getElementById(id).value='';});
+    ['f-title','f-authors','f-class','f-abstract','f-keywords','f-teacher','f-drivelink'].forEach(id=>{document.getElementById(id).value='';});
     document.getElementById('f-field').value='';
-    document.getElementById('file-name').textContent='';
     window.selectTrack('free');
     await loadPapers();
   } catch(e){ alert('제출에 실패했습니다. 다시 시도해주세요.'); console.error(e); }
