@@ -6,8 +6,8 @@
 <title>경포고등학교 정기학술회 탐구 아카이브</title>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-html,body{overflow-x:hidden;max-width:100%}
+*{margin:0;padding:0;box-sizing:border-box;max-width:100%}
+html,body{overflow-x:hidden;width:100%}
 :root{
 --navy:#0a1628;--navy2:#112240;--navy3:#1d3a6b;
 --gold:#c9a84c;--gold2:#e8c96a;
@@ -46,16 +46,17 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .tab-badge{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px;font-weight:700}
 .tab-badge.teal{background:var(--teal)}
 .main-layout{display:grid;grid-template-columns:1fr 250px;max-width:1080px;margin:0 auto;padding:28px 40px;gap:0}
+.main-layout>div:first-child{min-width:0}
 .papers-grid{display:flex;flex-direction:column}
 .section-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--navy)}
 .section-tag{background:var(--navy);color:var(--gold);font-size:11px;font-weight:700;padding:3px 10px}
 .section-title{font-family:'Noto Serif KR',serif;font-size:15px;font-weight:600;color:var(--navy)}
 .section-desc{font-size:11px;color:var(--muted);margin-left:auto}
-.paper-card{background:var(--card);border:1px solid var(--border);padding:18px 20px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative}
+.paper-card{background:var(--card);border:1px solid var(--border);padding:18px 20px;margin-bottom:8px;cursor:pointer;transition:border-color .2s,box-shadow .2s;position:relative;min-width:0}
 .paper-card:hover{border-color:var(--navy3);box-shadow:2px 2px 0 var(--cream2)}
 .paper-card.featured{border-left:3px solid var(--gold)}
 .paper-card.featured::after{content:'우수논문';position:absolute;top:10px;right:10px;background:var(--gold);color:var(--navy);font-size:10px;font-weight:700;padding:2px 7px}
-.paper-meta{display:flex;gap:8px;align-items:center;margin-bottom:7px}
+.paper-meta{display:flex;gap:8px;align-items:center;margin-bottom:7px;min-width:0}
 .field-tag{font-size:10px;font-weight:700;padding:2px 7px;border-radius:2px}
 .ft-physics{background:#e8f0f8;color:#1a4a7a}.ft-chem{background:#fff0e8;color:#7a3a1a}
 .ft-bio{background:#e8f5e8;color:#1a5a1a}.ft-math{background:#f0e8f5;color:#4a1a7a}
@@ -79,7 +80,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .btn-delete{background:#fee;color:var(--red)}
 .btn-feature{background:#fffbe8;color:#7a5a00}
 .btn-promote{background:#e8f0fa;color:#1a4a7a}
-.sidebar{padding-left:24px;border-left:1px solid var(--border)}
+.sidebar{padding-left:24px;border-left:1px solid var(--border);min-width:0}
 .sidebar-block{margin-bottom:24px}
 .sidebar-title{font-size:11px;font-weight:700;letter-spacing:.1em;color:var(--muted);border-bottom:1px solid var(--border);padding-bottom:7px;margin-bottom:12px}
 .category-item{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--cream2);cursor:pointer}
@@ -156,7 +157,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .community-write-label{font-size:11px;font-weight:700;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
 .community-write .form-input{margin-bottom:10px;font-size:14px;padding:10px 12px}
 .community-write .form-textarea{height:90px;margin-bottom:10px;font-size:13px;line-height:1.7}
-.post-card{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:20px 22px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,box-shadow .2s}
+.post-card{background:var(--card);border:1px solid var(--border);border-radius:2px;padding:20px 22px;margin-bottom:12px;cursor:pointer;transition:border-color .2s,box-shadow .2s;min-width:0}
 .post-card:hover{border-color:var(--navy3);box-shadow:2px 2px 0 var(--cream2)}
 .post-card-top{display:flex;align-items:center;gap:10px;margin-bottom:10px}
 .post-avatar{width:30px;height:30px;border-radius:50%;background:var(--navy);color:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Noto Serif KR',serif;font-weight:700;font-size:13px;flex-shrink:0}
@@ -604,7 +605,7 @@ nav{padding:0 14px}.nav-links{gap:10px}
 <footer style="background:var(--navy);margin-top:60px;padding:24px 40px;text-align:center">
 <div style="font-family:'Noto Serif KR',serif;color:var(--gold);font-size:13px;font-weight:600;margin-bottom:4px">경포고등학교 정기학술회</div>
 <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:3px">총괄 · 이원희 &nbsp;|&nbsp; 서형우</div>
-<div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2027 Gyeongpo High School Academic Journal</div>
+<div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2025 Gyeongpo High School Academic Journal</div>
 </footer>
 
 <script type="module">
