@@ -7,6 +7,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{overflow-x:hidden;max-width:100%}
 :root{
 --navy:#0a1628;--navy2:#112240;--navy3:#1d3a6b;
 --gold:#c9a84c;--gold2:#e8c96a;
@@ -39,8 +40,8 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .stat-item{text-align:center}
 .stat-num{font-family:'Noto Serif KR',serif;font-size:26px;color:var(--gold);font-weight:700}
 .stat-label{font-size:11px;color:rgba(255,255,255,0.5);margin-top:2px}
-.section-tabs{background:var(--cream2);border-bottom:1px solid var(--border);padding:0 40px;display:flex}
-.tab-btn{background:none;border:none;padding:13px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px}
+.section-tabs{background:var(--cream2);border-bottom:1px solid var(--border);padding:0 40px;display:flex;overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{background:none;border:none;padding:13px 18px;font-size:13px;font-weight:500;cursor:pointer;font-family:'Noto Sans KR',sans-serif;color:var(--muted);border-bottom:2px solid transparent;transition:all .2s;margin-bottom:-1px;flex-shrink:0;white-space:nowrap}
 .tab-btn.active{color:var(--navy);border-bottom-color:var(--navy)}
 .tab-badge{background:var(--red);color:#fff;font-size:10px;padding:1px 6px;border-radius:10px;margin-left:5px;font-weight:700}
 .tab-badge.teal{background:var(--teal)}
@@ -63,7 +64,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .ft-social{background:#fef5e0;color:#8a5a00}.ft-history{background:#f5ece0;color:#6a4520}
 .ft-lit{background:#faf0f5;color:#7a1a4a}.ft-psych{background:#e0f5f0;color:#0a6a55}
 .paper-year{font-size:11px;color:var(--muted)}
-.paper-title{font-family:'Noto Serif KR',serif;font-size:14px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:5px}
+.paper-title{font-family:'Noto Serif KR',serif;font-size:14px;font-weight:600;color:var(--text);line-height:1.5;margin-bottom:5px;overflow-wrap:anywhere;word-break:keep-all}
 .paper-authors{font-size:12px;color:var(--muted);margin-bottom:7px}
 .paper-abstract{font-size:12px;color:var(--muted);line-height:1.7;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .paper-footer{display:flex;align-items:center;justify-content:space-between;margin-top:10px;padding-top:8px;border-top:1px solid var(--cream2)}
@@ -162,7 +163,7 @@ nav{background:var(--navy);padding:0 32px;display:flex;align-items:center;justif
 .post-author-line{display:flex;flex-direction:column;line-height:1.35}
 .post-author-name{font-size:12px;font-weight:700;color:var(--navy)}
 .post-author-date{font-size:11px;color:var(--muted)}
-.post-title{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.5}
+.post-title{font-family:'Noto Serif KR',serif;font-size:16px;font-weight:700;color:var(--text);margin-bottom:8px;line-height:1.5;overflow-wrap:anywhere;word-break:keep-all}
 .post-preview{font-size:13px;color:var(--text);line-height:1.85;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;opacity:.85}
 .post-footer{display:flex;justify-content:flex-end;align-items:center;margin-top:14px;padding-top:12px;border-top:1px solid var(--cream2);font-size:12px;color:var(--muted);font-weight:500}
 .post-footer::before{content:'💬';margin-right:4px;font-size:12px}
@@ -483,7 +484,7 @@ nav{padding:0 14px}.nav-links{gap:10px}
 </div>
 <div class="about-section">
 <h3>생기부 활용 안내</h3>
-<p>경포고 정기학술회에 논문을 게재한 경우, 학교생활기록부 세부능력 및 특기사항(세특)에 기재할 수 있습니다. 기타 문의가 있는 경우 총괄 이원희·서형우에게 문의하세요.</p>
+<p>경포고 정기학술회에 논문을 게재한 경우, 학교생활기록부 세부능력 및 특기사항(세특)에 기재할 수 있습니다. 게재 확인서 발급이 필요한 경우 총괄 이원희·서형우에게 문의하세요.</p>
 </div>
 </div>
 </div>
@@ -603,7 +604,7 @@ nav{padding:0 14px}.nav-links{gap:10px}
 <footer style="background:var(--navy);margin-top:60px;padding:24px 40px;text-align:center">
 <div style="font-family:'Noto Serif KR',serif;color:var(--gold);font-size:13px;font-weight:600;margin-bottom:4px">경포고등학교 정기학술회</div>
 <div style="font-size:12px;color:rgba(255,255,255,0.4);margin-bottom:3px">총괄 · 이원희 &nbsp;|&nbsp; 서형우</div>
-<div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2026 Gyeongpo High School Academic Journal</div>
+<div style="font-size:11px;color:rgba(255,255,255,0.25)">© 2027 Gyeongpo High School Academic Journal</div>
 </footer>
 
 <script type="module">
